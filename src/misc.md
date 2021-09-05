@@ -21,14 +21,14 @@ publish/subscribe を表す。ソフトウェアデザインパターンのひ�
 - Subscriber
   - メッセージを受信する。トピックベースであれば、トピックを指定して Broker からメッセージを受け取る。
 
-実際は PUSH 通知のような多くのユーザに同一のメッセージを送る場面で用いられる。また、[Google Cloud Pub/Sub のユースケース](https://cloud.google.com/pubsub?hl=ja)によると、リアルタイムデータ分析にも用いられているようだ。主なサービスとして、AWS Simple Notification Service(SNS), Google Cloud Pub/Sub がある。(Pub/Sub という名前なのでここで触れたが、実装がどうなっているか分からないので、原義の Pub/Sub 方式かどうかは分からない。)
+実際は PUSH 通知のような多くのユーザに同一のメッセージを送る場面で用いられる。また、[Google Cloud Pub/Sub のユースケース](https://cloud.google.com/pubsub?hl=ja)によると、リアルタイムデータ分析にも用いられているようだ。主なサービスとして、AWS Simple Notification Service(SNS), Google Cloud Pub/Sub があり、OSS では RabbitMQ、Kafka がある。(Pub/Sub という名前なのでここで触れたが、実装がどうなっているか分からないので、原義の Pub/Sub 方式に沿ったサービスかどうかは分からない。)
 
 有名なデザインパターンに Observer パターンというものがある。これとの違いは、Broker に相当する存在があるかないかである。Observer パターンでは送信者と受信者が直接やり取りするが、Pub/Sub では間に Broker が入る。
 
 ![pub/sub vs observer](img/pubsub-1.png)
 
 MQTT について
-MQTT は、Message Queueing Telemetry Transport を表す。Pub/Sub 方式で実装された IoT 向けのプロトコル。
+MQTT は、Message Queueing Telemetry Transport を表す。Pub/Sub 方式で実装された IoT 向けのプロトコル。IBM 社と Eurotech 社にのメンバーよって考案され、もとのプロジェクトである Paho は Eclipse Foundation に寄贈されたようである。([Eclipse Paho™ MQTT Python Client](https://github.com/eclipse/paho.mqtt.python)) MQTT の OSS としては[mosquitto](https://github.com/eclipse/mosquitto)が有名。また、MQTT は Facebook Messenger で使用されているらしい。
 
 todo!
 
@@ -40,3 +40,4 @@ ref.
 - [Pub/Sub メッセージングモデルの業務利用における難しさ](https://qiita.com/TakaakiOtomo/items/badba239ade07c4ea59f) Pub/Sub の定義について
 - [出版-購読型モデル - wikipedia](https://ja.wikipedia.org/wiki/%E5%87%BA%E7%89%88-%E8%B3%BC%E8%AA%AD%E5%9E%8B%E3%83%A2%E3%83%87%E3%83%AB)
 - [Python における Pub/Sub パターンの実装](https://webty.jp/staffblog/production/post-3328/) 特に Observer と Pub/Sub の違いについてと、実装
+- [初めての MQTT](https://gist.github.com/voluntas/89000a06a7b79f1230ab) MQTT について
