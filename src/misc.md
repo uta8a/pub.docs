@@ -51,7 +51,8 @@ todo!
 ref.
 
 ## グラフィックスについて
-ref. 
+
+ref.
 
 https://raytracing.github.io/books/RayTracingInOneWeekend.html
 
