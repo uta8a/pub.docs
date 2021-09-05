@@ -41,3 +41,18 @@ ref.
 - [出版-購読型モデル - wikipedia](https://ja.wikipedia.org/wiki/%E5%87%BA%E7%89%88-%E8%B3%BC%E8%AA%AD%E5%9E%8B%E3%83%A2%E3%83%87%E3%83%AB)
 - [Python における Pub/Sub パターンの実装](https://webty.jp/staffblog/production/post-3328/) 特に Observer と Pub/Sub の違いについてと、実装
 - [初めての MQTT](https://gist.github.com/voluntas/89000a06a7b79f1230ab) MQTT について
+
+## malloc について
+
+todo!
+
+- malloc を実装してみる
+
+ref.
+
+## グラフィックスについて
+ref. 
+
+https://raytracing.github.io/books/RayTracingInOneWeekend.html
+
+https://zenn.dev/mebiusbox/books/8d9c42883df9f6/viewer/b85221
