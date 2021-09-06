@@ -47,6 +47,8 @@ ref.
 todo!
 
 - malloc を実装してみる
+- [malloc の動作を追いかける](https://qiita.com/kaityo256/items/9e78b507940b2292bf79)を読む
+- 迷路本を読む。ここらへんは CTF の Pwn(特に heap)を学んだほうがイメージ付きやすいこともありそう
 
 ref.
 
