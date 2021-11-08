@@ -1,0 +1,10 @@
+
+[book]
+author = "Masanori Tani"
+language = "ja"
+title = "pub.docs"
+
+[build]
+build-dir = "docs"
+
+[output.html]
