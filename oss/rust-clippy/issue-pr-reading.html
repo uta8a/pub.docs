@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../title.html"><strong aria-hidden="true">1.</strong> はじめに</a></li><li class="chapter-item expanded "><a href="../../oss-rustc/index.html"><strong aria-hidden="true">2.</strong> Rust本体にコントリビュートしたい</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../oss-rustc/issue-pr-reading.html"><strong aria-hidden="true">2.1.</strong> IssueとPRを読む</a></li></ol></li><li class="chapter-item expanded "><a href="../../oss/rust-clippy/index.html"><strong aria-hidden="true">3.</strong> oss/rust-clippy</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../oss/rust-clippy/issue-pr-reading.html" class="active"><strong aria-hidden="true">3.1.</strong> IssueとPRを読む</a></li></ol></li><li class="chapter-item expanded "><a href="../../cpu-alone/index.html"><strong aria-hidden="true">4.</strong> ひとりCPU実験余興をしたい</a></li><li class="chapter-item expanded "><a href="../../lowlayer-zeus/index.html"><strong aria-hidden="true">5.</strong> 低レイヤに強くなりたい</a></li><li class="chapter-item expanded "><a href="../../misc.html"><strong aria-hidden="true">6.</strong> その他まとめられていないもの</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../title.html"><strong aria-hidden="true">1.</strong> はじめに</a></li><li class="chapter-item expanded "><a href="../../oss-rustc/index.html"><strong aria-hidden="true">2.</strong> Rust本体にコントリビュートしたい</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../oss-rustc/issue-pr-reading.html"><strong aria-hidden="true">2.1.</strong> IssueとPRを読む</a></li></ol></li><li class="chapter-item expanded "><a href="../../oss/rust-clippy/index.html"><strong aria-hidden="true">3.</strong> oss/rust-clippy</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../oss/rust-clippy/issue-pr-reading.html" class="active"><strong aria-hidden="true">3.1.</strong> IssueとPRを読む</a></li><li class="chapter-item expanded "><a href="../../oss/rust-clippy/contributing-guide-reading.html"><strong aria-hidden="true">3.2.</strong> Contributing to Clippy を読む</a></li></ol></li><li class="chapter-item expanded "><a href="../../cpu-alone/index.html"><strong aria-hidden="true">4.</strong> ひとりCPU実験余興をしたい</a></li><li class="chapter-item expanded "><a href="../../lowlayer-zeus/index.html"><strong aria-hidden="true">5.</strong> 低レイヤに強くなりたい</a></li><li class="chapter-item expanded "><a href="../../misc.html"><strong aria-hidden="true">6.</strong> その他まとめられていないもの</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -180,7 +180,13 @@ note: we would appreciate a bug report: https://github.com/rust-lang/rust-clippy
 </blockquote>
 <p>Issue <a href="https://github.com/rust-lang/rust-clippy/issues/7934">#7934</a> の解決PR。</p>
 <p>MCVEはテストに利用されるみたい。clippyでは <code>tests/ui/crashes</code> にICEが置かれるのかな。 auxiliary というディレクトリがある。auxiliaryは意味的に補助ということらしい？uiはどういう意味なんだろう。おそらく、複数ファイルによるtestは補助ディレクトリに<code>main.rs</code>以外を置いて<code>tests/ui/crashes</code>以下に<code>main.rs</code>を<code>ice-&lt;number&gt;</code>の形で置いているみたい？</p>
+<p>UIテストについては <a href="https://rustc-dev-guide.rust-lang.org/tests/adding.html#ui">rustc-dev-guide/Guide to the UI tests</a>に記述がある。UIの名前が意味するところは分からなかった。</p>
 <p><a href="https://github.com/rust-lang/rust-clippy/tree/master/clippy_lints/src">rust-clippyのclippy_lints/src以下</a> にruleがめちゃ置いてある。今回はこの中のlintのルールのひとつである <code>undocumented_unsafe_blocks</code> が修正されている。このルールは PR <a href="https://github.com/rust-lang/rust-clippy/pull/7748">#7748</a> で追加されている。このlintは2人が別々に実装し結局こっちが採用された経緯があるみたい。確かにOSSで実装がバッティングしちゃうのはありそう。</p>
+<h2 id="pr-a-hrefhttpsgithubcomrust-langrust-clippypull77487748a"><a class="header" href="#pr-a-hrefhttpsgithubcomrust-langrust-clippypull77487748a">PR <a href="https://github.com/rust-lang/rust-clippy/pull/7748">#7748</a></a></h2>
+<blockquote>
+<p>Add undocumented_unsafe_blocks lint</p>
+</blockquote>
+<p>unsafeブロックでドキュメントコメントが書かれてないなら警告を出すlint ruleの追加PR。</p>
 
                     </main>
 
@@ -189,7 +195,7 @@ note: we would appreciate a bug report: https://github.com/rust-lang/rust-clippy
                             <a rel="prev" href="../../oss/rust-clippy/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="../../cpu-alone/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../../oss/rust-clippy/contributing-guide-reading.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -201,7 +207,7 @@ note: we would appreciate a bug report: https://github.com/rust-lang/rust-clippy
                     <a rel="prev" href="../../oss/rust-clippy/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="../../cpu-alone/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../../oss/rust-clippy/contributing-guide-reading.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

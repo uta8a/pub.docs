@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="title.html"><strong aria-hidden="true">1.</strong> はじめに</a></li><li class="chapter-item expanded "><a href="oss-rustc/index.html"><strong aria-hidden="true">2.</strong> Rust本体にコントリビュートしたい</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="oss-rustc/issue-pr-reading.html"><strong aria-hidden="true">2.1.</strong> IssueとPRを読む</a></li></ol></li><li class="chapter-item expanded "><a href="oss/rust-clippy/index.html"><strong aria-hidden="true">3.</strong> oss/rust-clippy</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="oss/rust-clippy/issue-pr-reading.html"><strong aria-hidden="true">3.1.</strong> IssueとPRを読む</a></li></ol></li><li class="chapter-item expanded "><a href="cpu-alone/index.html"><strong aria-hidden="true">4.</strong> ひとりCPU実験余興をしたい</a></li><li class="chapter-item expanded "><a href="lowlayer-zeus/index.html"><strong aria-hidden="true">5.</strong> 低レイヤに強くなりたい</a></li><li class="chapter-item expanded "><a href="misc.html"><strong aria-hidden="true">6.</strong> その他まとめられていないもの</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="title.html"><strong aria-hidden="true">1.</strong> はじめに</a></li><li class="chapter-item expanded "><a href="oss-rustc/index.html"><strong aria-hidden="true">2.</strong> Rust本体にコントリビュートしたい</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="oss-rustc/issue-pr-reading.html"><strong aria-hidden="true">2.1.</strong> IssueとPRを読む</a></li></ol></li><li class="chapter-item expanded "><a href="oss/rust-clippy/index.html"><strong aria-hidden="true">3.</strong> oss/rust-clippy</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="oss/rust-clippy/issue-pr-reading.html"><strong aria-hidden="true">3.1.</strong> IssueとPRを読む</a></li><li class="chapter-item expanded "><a href="oss/rust-clippy/contributing-guide-reading.html"><strong aria-hidden="true">3.2.</strong> Contributing to Clippy を読む</a></li></ol></li><li class="chapter-item expanded "><a href="cpu-alone/index.html"><strong aria-hidden="true">4.</strong> ひとりCPU実験余興をしたい</a></li><li class="chapter-item expanded "><a href="lowlayer-zeus/index.html"><strong aria-hidden="true">5.</strong> 低レイヤに強くなりたい</a></li><li class="chapter-item expanded "><a href="misc.html"><strong aria-hidden="true">6.</strong> その他まとめられていないもの</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -163,6 +163,10 @@
 <ul>
 <li><input disabled="" type="checkbox"/>
 PR <a href="https://github.com/rust-lang/rust-clippy/pull/7748">#7748</a> を読んで新しいclippyのrule追加について学ぶ。</li>
+<li><input disabled="" type="checkbox"/>
+<a href="https://keens.github.io/blog/2019/12/23/jisakulintru_rutocargo_fixderustnoko_doworifakutasuru/">自作lintルールとcargo fixでRustのコードをリファクタする</a> を読む</li>
+<li><input disabled="" type="checkbox"/>
+<a href="https://rhysd.hatenablog.com/entry/2019/02/04/205712">Rust 公式 linter の clippy に新しいルールを実装した</a> を読む</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="issueとprを読む-1"><a class="header" href="#issueとprを読む-1">IssueとPRを読む</a></h1>
 <h2 id="issue-a-hrefhttpsgithubcomrust-langrust-clippyissues78267826a"><a class="header" href="#issue-a-hrefhttpsgithubcomrust-langrust-clippyissues78267826a">Issue <a href="https://github.com/rust-lang/rust-clippy/issues/7826">#7826</a></a></h2>
@@ -210,7 +214,22 @@ note: we would appreciate a bug report: https://github.com/rust-lang/rust-clippy
 </blockquote>
 <p>Issue <a href="https://github.com/rust-lang/rust-clippy/issues/7934">#7934</a> の解決PR。</p>
 <p>MCVEはテストに利用されるみたい。clippyでは <code>tests/ui/crashes</code> にICEが置かれるのかな。 auxiliary というディレクトリがある。auxiliaryは意味的に補助ということらしい？uiはどういう意味なんだろう。おそらく、複数ファイルによるtestは補助ディレクトリに<code>main.rs</code>以外を置いて<code>tests/ui/crashes</code>以下に<code>main.rs</code>を<code>ice-&lt;number&gt;</code>の形で置いているみたい？</p>
+<p>UIテストについては <a href="https://rustc-dev-guide.rust-lang.org/tests/adding.html#ui">rustc-dev-guide/Guide to the UI tests</a>に記述がある。UIの名前が意味するところは分からなかった。</p>
 <p><a href="https://github.com/rust-lang/rust-clippy/tree/master/clippy_lints/src">rust-clippyのclippy_lints/src以下</a> にruleがめちゃ置いてある。今回はこの中のlintのルールのひとつである <code>undocumented_unsafe_blocks</code> が修正されている。このルールは PR <a href="https://github.com/rust-lang/rust-clippy/pull/7748">#7748</a> で追加されている。このlintは2人が別々に実装し結局こっちが採用された経緯があるみたい。確かにOSSで実装がバッティングしちゃうのはありそう。</p>
+<h2 id="pr-a-hrefhttpsgithubcomrust-langrust-clippypull77487748a"><a class="header" href="#pr-a-hrefhttpsgithubcomrust-langrust-clippypull77487748a">PR <a href="https://github.com/rust-lang/rust-clippy/pull/7748">#7748</a></a></h2>
+<blockquote>
+<p>Add undocumented_unsafe_blocks lint</p>
+</blockquote>
+<p>unsafeブロックでドキュメントコメントが書かれてないなら警告を出すlint ruleの追加PR。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="a-hrefhttpsgithubcomrust-langrust-clippyblobmastercontributingmdwriting-codecontributing-to-clippya-を読む"><a class="header" href="#a-hrefhttpsgithubcomrust-langrust-clippyblobmastercontributingmdwriting-codecontributing-to-clippya-を読む"><a href="https://github.com/rust-lang/rust-clippy/blob/master/CONTRIBUTING.md#writing-code">Contributing to Clippy</a> を読む</a></h1>
+<p><strong>読んで分かったこと</strong></p>
+<ul>
+<li>questionはZulipの #clippy で尋ねてみるのがよさそう。Zulipは<a href="https://zulip-archive.rust-lang.org/">archive</a>がとられていて、見れるようになっている</li>
+<li><a href="https://www.rust-lang.org/policies/code-of-conduct">Rust Code of conduct</a>に従うこと。日本語訳部分読んでみたけど気を配ろうという人間として普通の振る舞いだった。でも文化の違いとかあるだろうし気を配らないと。</li>
+<li><a href="https://github.com/rust-lang/rust-clippy/blob/master/doc/basics.md">Basics for hacking on Clippy</a>とかいう初心者向けのドキュメントがあり親切さにビビる。</li>
+<li><a href="https://github.com/rust-lang/rust-clippy/blob/master/CONTRIBUTING.md#how-clippy-works">How Clippy works</a>が本丸っぽい。</li>
+</ul>
+<p><strong>手を動かしてみる</strong></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ひとりcpu実験余興をしたい"><a class="header" href="#ひとりcpu実験余興をしたい">ひとりCPU実験余興をしたい</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="低レイヤに強くなりたい"><a class="header" href="#低レイヤに強くなりたい">低レイヤに強くなりたい</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="雑多なもの"><a class="header" href="#雑多なもの">雑多なもの</a></h1>
