@@ -66,4 +66,14 @@ Issue [#7934](https://github.com/rust-lang/rust-clippy/issues/7934) の解決PR�
 
 MCVEはテストに利用されるみたい。clippyでは `tests/ui/crashes` にICEが置かれるのかな。 auxiliary というディレクトリがある。auxiliaryは意味的に補助ということらしい？uiはどういう意味なんだろう。おそらく、複数ファイルによるtestは補助ディレクトリに`main.rs`以外を置いて`tests/ui/crashes`以下に`main.rs`を`ice-<number>`の形で置いているみたい？
 
+UIテストについては [rustc-dev-guide/Guide to the UI tests](https://rustc-dev-guide.rust-lang.org/tests/adding.html#ui)に記述がある。UIの名前が意味するところは分からなかった。
+
 [rust-clippyのclippy_lints/src以下](https://github.com/rust-lang/rust-clippy/tree/master/clippy_lints/src) にruleがめちゃ置いてある。今回はこの中のlintのルールのひとつである `undocumented_unsafe_blocks` が修正されている。このルールは PR [#7748](https://github.com/rust-lang/rust-clippy/pull/7748) で追加されている。このlintは2人が別々に実装し結局こっちが採用された経緯があるみたい。確かにOSSで実装がバッティングしちゃうのはありそう。
+
+## PR [#7748](https://github.com/rust-lang/rust-clippy/pull/7748)
+
+> Add undocumented_unsafe_blocks lint
+
+unsafeブロックでドキュメントコメントが書かれてないなら警告を出すlint ruleの追加PR。
+
+
