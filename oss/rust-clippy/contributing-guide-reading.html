@@ -141,8 +141,16 @@
 <li><a href="https://www.rust-lang.org/policies/code-of-conduct">Rust Code of conduct</a>に従うこと。日本語訳部分読んでみたけど気を配ろうという人間として普通の振る舞いだった。でも文化の違いとかあるだろうし気を配らないと。</li>
 <li><a href="https://github.com/rust-lang/rust-clippy/blob/master/doc/basics.md">Basics for hacking on Clippy</a>とかいう初心者向けのドキュメントがあり親切さにビビる。</li>
 <li><a href="https://github.com/rust-lang/rust-clippy/blob/master/CONTRIBUTING.md#how-clippy-works">How Clippy works</a>が本丸っぽい。</li>
+<li><a href="https://github.com/rust-lang/rust-clippy/blob/master/doc/adding_lints.md">Adding a new lint</a> が今回やろうとしているlinterの追加に一番近い。</li>
 </ul>
 <p><strong>手を動かしてみる</strong></p>
+<p>clippyを <code>git clone</code> してくる</p>
+<p><a href="https://github.com/rust-lang/rust-clippy/blob/master/doc/adding_lints.md">Adding a new lint</a> によるとまずテストを追加するとのことなので、追加して <code>TESTNAME=zzz_test_rule cargo uitest</code> を走らせる</p>
+<p><img src="img/image-3.jpg" alt="image-3" /></p>
+<p>上のように、linterそんなのないよというエラーで落ちる。正常に動いている。次に中身を追加と期待されるstderrを追加する。</p>
+<p>中身を追加して <code>TESTNAME=zzz_test_rule cargo uitest</code> 走らせたらエラー。<code>declare_clippy_lint!</code> は <code>declare_tool_lint</code> が、<code>declare_lint_pass!</code> は <code>declare_lint_pass</code> から来ているのでこれらをimportする。</p>
+<p>ここでよく分からないので実例を見てみる。行数をtokeiを使って見た。<code>tokei . --files --sort lines | grep -E '\./[A-Za-z_]+\.rs'</code></p>
+<p>どうやら <a href="https://github.com/rust-lang/rust-clippy/blob/master/clippy_lints/src/temporary_assignment.rs">temporary_assignment.rs</a> が短いようなので見に行く。</p>
 
                     </main>
 
