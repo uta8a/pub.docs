@@ -8,4 +8,5 @@
   - [Contributing to Clippy を読む](oss/rust-clippy/contributing-guide-reading.md)
 - [ひとりCPU実験余興をしたい](cpu-alone/index.md)
 - [低レイヤに強くなりたい](lowlayer-zeus/index.md)
+- [Rustを学ぼう](learn-rust/index.md)
 - [その他まとめられていないもの](misc.md)
