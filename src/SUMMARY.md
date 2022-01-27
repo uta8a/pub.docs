@@ -9,6 +9,7 @@
 - [ひとりCPU実験余興をしたい](cpu-alone/index.md)
 - [低レイヤに強くなりたい](lowlayer-zeus/index.md)
 - [Rustを学ぼう](learn-rust/chapter-1.md)
+  - [環境構築](learn-rust/chapter-0.md)
   - [低レイヤに入門して学ぶRustの安全性](learn-rust/chapter-2.md)
   - [パフォーマンス比較を通してRustの高速性を検証しよう](learn-rust/chapter-3.md)
   - [Rustの開発体験が良いことを体感しよう](learn-rust/chapter-4.md)
