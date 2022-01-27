@@ -1,14 +1,24 @@
 # Rustを学ぼう
 
-この文書は、[The Rust Programming Language](https://doc.rust-lang.org/book/) をこれから読む人に向けて書かれています。TRPLを読めば分かることがほとんどですが、いきなりTRPLを読むのは難しいという人向けにクッションがあったらいいのかもしれないという気持ちで書いています。
+この文書は、 [The Rust Programming Language](https://doc.rust-lang.org/book/) を参考に、Rustはいいぞ！ということを伝えるために作った資料です。
 
 ## 目次
 
 <!-- toc -->
 
-## Rustをインストールする前に、少し触ってみよう
+## はじめに
 
-Rustをインストールするのはとても簡単ですが、まずは気軽に試すためにブラウザだけで簡単なコードが試せる [Rust Playground](https://play.rust-lang.org/) を使ってみましょう。
+初めてのプログラミング言語を学ぶときには、「その言語の良さが分からないと学ぶモチベーションが上がらない」でも、「言語の良さをきちんと知るにはその言語を少しは触る必要がある」というジレンマがあります。
+
+そこで今回は、`if`や`for`などの基本的な部分+所有権というRustの特徴的な部分をざっと紹介した後で、Rustのよさである「安全性」「実行速度」「開発体験」をそれぞれ手を動かしながら体験してもらうという構成にしました。
+
+つまり、先に簡単にRustの勉強をした後で、Rustの良さを知る、という流れです。
+
+それでは始めていきましょう。
+
+## ブラウザからRustを気軽に試す
+
+Rustをインストールするのはとても簡単ですが、まずは気軽に試すためにブラウザだけで簡単なコードが試せる [Rust Playground](https://play.rust-lang.org/) を使ってみましょう。このPlaygroundはブラウザで入力したコードを裏でサーバに投げてコンパイルして実行して結果を返してくれるものです。
 
 初めて使う方は以下のようなコードが表示されていると思います。この部分は自由に編集することができます。
 
@@ -22,7 +32,9 @@ fn main() {
 
 しかし現段階での理解は難しいと思うので、今は、関数は `!` なしで `func_name()` のように呼び出され、マクロは `!` ありで `macro_name!()` のように呼び出されるということを覚えていれば大丈夫です。
 
-それではこのコードを実行してみましょう。左上の「`RUN`」ボタンを押してみてください。画面下半分のところに「`Progress`」で黒丸が表示され、少し時間が経つと「`Standard Error`」, 「`Standard Output`」部分に表示がされていると思います。「`Standard Error`」が標準エラー出力、「`Standard Output`」が標準出力です。「`SHARE`」から「`Permalink to the playground`」をクリックすると、 [https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=7c4f223819334660c7915edb9830a15e](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=7c4f223819334660c7915edb9830a15e) のようにlinkが得られます。
+それではこのコードを実行してみましょう。左上の「`RUN`」ボタンを押してみてください。画面下半分のところに「`Progress`」で黒丸が表示され、少し時間が経つと「`Standard Error`」, 「`Standard Output`」部分に表示がされていると思います。「`Standard Error`」が標準エラー出力、「`Standard Output`」が標準出力です。
+
+また、「`SHARE`」から「`Permalink to the playground`」をクリックすると、 [https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=7c4f223819334660c7915edb9830a15e](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=7c4f223819334660c7915edb9830a15e) のように書いたコードへのリンクが得られます。
 
 使い方はこれで以上です。それでは、どの言語にも共通する`if`や`for`のような基本的な事柄をPlayground上で学んでみましょう。
 
@@ -33,7 +45,13 @@ fn main() {
 - [ ] Rust Playgroundの使い方(コードの書き方、実行の仕方、リンクの保存の仕方)を理解した
 - [ ] 関数とマクロの違いをなんとなく理解した
 
-## Rustをインストールしてみよう
+## この後の進め方
+
+この後はRustの基本的な部分と、所有権というRustの特徴的な部分を学びます。
+
+基本的にはRust Playgroundのリンクを開き、実行し、説明文を読み、確認テストに答える、という流れです。
+
+少し単調かもしれませんが、頑張りましょう！
 
 ## 変数
 
