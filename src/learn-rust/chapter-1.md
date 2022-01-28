@@ -49,11 +49,45 @@ fn main() {
 
 この後はRustの基本的な部分と、所有権というRustの特徴的な部分を学びます。
 
-基本的にはRust Playgroundのリンクを開き、実行し、説明文を読み、確認テストに答える、という流れです。
+基本的にはRust Playgroundのリンクを開き、実行し、説明文を読み、演習に答える、という流れです。
 
 少し単調かもしれませんが、頑張りましょう！
 
 ## 変数
+
+[こちらのPlaygroundへのリンク](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=473312ffaf20421980b8dd174b4a59ef) を開いて実行してください。
+
+以下のようなエラーが出たと思います。
+
+```
+   Compiling playground v0.0.1 (/playground)
+error[E0384]: cannot assign twice to immutable variable `x`
+ --> src/main.rs:4:5
+  |
+2 |     let x = 10;
+  |         -
+  |         |
+  |         first assignment to `x`
+  |         help: consider making this binding mutable: `mut x`
+3 |     println!("x = {}", x);
+4 |     x = 1000;
+  |     ^^^^^^^^ cannot assign twice to immutable variable
+
+For more information about this error, try `rustc --explain E0384`.
+error: could not compile `playground` due to previous error
+```
+
+Rustは実行バイナリにコンパイルして実行する言語です。このエラーは、コンパイルできないよ！というエラーです。
+
+エラー文を読んでみると、「cannot assign twice to immutable variable」(immutableな変数に2回代入はできない)とありますね。immutableは「不変」という意味です。Rustでは、変数はデフォルトで不変になっていて、再代入ができなくなっています。
+
+代入したい場合は、エラーメッセージの「help: consider making this binding mutable: `mut x`」にあるように、`mut`キーワードを使います。
+
+**演習**
+
+- [問題へのリンク](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=35bb2c56c87d81d52d4a071d49add48a) を開いて、コンパイルが通るように「ここを書き換えよ」というコメントのある行を書き換えよ。
+  - 参考: [TRPL: 変数と可変性](https://doc.rust-jp.rs/book-ja/ch03-01-variables-and-mutability.html)
+  - [解答のリンクはこちら](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=a6ff551ed8151ceb8a36784cc2dc39b9)
 
 ## データ型
 
