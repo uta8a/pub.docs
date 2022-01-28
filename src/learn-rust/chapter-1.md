@@ -87,7 +87,7 @@ Rustは実行バイナリにコンパイルして実行する言語です。こ�
 
 - [問題へのリンク](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=35bb2c56c87d81d52d4a071d49add48a) を開いて、コンパイルが通るように「ここを書き換えよ」というコメントのある行を書き換えよ。
   - 参考: [TRPL: 変数と可変性](https://doc.rust-jp.rs/book-ja/ch03-01-variables-and-mutability.html)
-  - [解答のリンクはこちら](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=a6ff551ed8151ceb8a36784cc2dc39b9)
+  - [解答へのリンクはこちら](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=a6ff551ed8151ceb8a36784cc2dc39b9)
 
 ## データ型
 
