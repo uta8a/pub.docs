@@ -115,11 +115,53 @@ Rustは実行バイナリにコンパイルして実行する言語です。こ�
 
 ## 関数
 
+関数は以下のように書きます。関数は値を受け取って処理を行うものなので、引数と返り値に注目すると分かりやすいと思います。
 
+```rs
+// 関数
+fn function_1() {
+    println!("Number = {}", 123);
+}
+
+// 引数のある関数
+fn function_2(x: i32) {
+    println!("Number = {}", x);
+}
+
+// 返り値のある関数
+fn function_3(x: i32) -> i32 {
+    x + 1
+}
+```
+
+引数はカッコの中に、 `func_name(x: Ty)` のように変数 `x` の型 `Ty` をコロン `:` を間に挟んで書きます。
+
+返り値は、`func_name() -> Ty` のように返り値の型 `Ty` を `->` の後ろに書きます。
+
+**演習**
+
+- [問題へのリンク](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=0d0e85e7fcad3de7baebceb9bf4dcd89) を開いて、コンパイルが通るように関数を書き加えてみましょう。
+  - 上の `function_3` を真似してみましょう。
+  - 参考: [TRPL: 関数](https://doc.rust-jp.rs/book-ja/ch03-03-how-functions-work.html)
+  - [解答へのリンクはこちら](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=0b0119736025db8697b879ef775f64ed)
 
 ## コメント
 
+コメントは `// (comment)` や `/* (comment) */` と書くことができます。
+
+```rs
+// hello, world 一行のコメント
+
+/* ok
+This is comment
+複数行書けるコメント
+ただ、複数行でも `//` を使うことが多いと思います。
+ */
+```
+
 ## フロー制御
+
+
 
 ## 所有権
 
