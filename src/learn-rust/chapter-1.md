@@ -91,7 +91,31 @@ Rustは実行バイナリにコンパイルして実行する言語です。こ�
 
 ## データ型
 
+静的型付き言語であるRustでは、値には型がついています。データ型の中にある「スカラー型」と「複合型」を学びましょう。
+
+- スカラー型: 整数、浮動小数点数、論理値、文字
+- 複合型: タプル型、配列
+
+となっています。
+
+**演習**
+
+- [リンク](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=5eff8a75ba17095a08c0dcbb9920b3eb) を開いて、それぞれのデータ型を確認しましょう。
+  - 参考: [TRPL: データ型](https://doc.rust-jp.rs/book-ja/ch03-02-data-types.html)
+  - 参考: [The Rust Reference: Types](https://doc.rust-lang.org/reference/types.html)
+- [問題へのリンク](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=5abae3a2b959cfbcb2b604b061dc6e50) を開いて、コンパイルが通るかどうか予想してみましょう。
+  - なぜ `mut` をつけていないのにコンパイルが通るのでしょうか？
+  - 参考: [スコープとシャドーイング](https://doc.rust-jp.rs/rust-by-example-ja/variable_bindings/scope.html)
+  - [解答へのリンクはこちら](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=4d3643102387a5360ebe8c0a9a47cffd)
+- [問題へのリンク](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=4ae72baee96801dcbbc44c195719d504) を開いて、コンパイルが通るように「ここを書き換えよ」というコメントのある行を書き換えよ。
+  - なぜコンパイルが通らないのでしょうか？理由を考えてみましょう。
+  - 参考: [Rust By Example: 型キャスティング](https://doc.rust-jp.rs/rust-by-example-ja/types/cast.html)
+  - 参考: [keyword `as`](https://doc.rust-lang.org/std/keyword.as.html)
+  - [解答へのリンクはこちら](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=2512e68e8c35da8d12c952006741c41a)
+
 ## 関数
+
+
 
 ## コメント
 
