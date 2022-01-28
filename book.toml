@@ -4,6 +4,10 @@ author = "Masanori Tani"
 language = "ja"
 title = "pub.docs"
 
+[preprocessor.toc]
+command = "mdbook-toc"
+renderer = ["html"]
+
 [build]
 build-dir = "docs"
 
