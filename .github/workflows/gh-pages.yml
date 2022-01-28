@@ -13,10 +13,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup mdBook
-        uses: peaceiris/actions-mdbook@v1
+      - uses: actions-rs/toolchain@v1
         with:
-          mdbook-version: 'latest'
+          toolchain: stable
+      
+      # TODO: cache or make image of mdbook and mdbook-toc
+      - uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: mdbook
+      - uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: mdbook-toc
 
       - run: mdbook build --dest-dir ./book
 
