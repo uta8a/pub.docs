@@ -4,7 +4,10 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Rustを学ぼう - pub.docs</title>
+
+
         <!-- Custom HTML head -->
+        
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,15 +19,18 @@
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
         <link rel="stylesheet" href="../css/print.css" media="print">
+
         <!-- Fonts -->
         <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
         <link rel="stylesheet" href="../fonts/fonts.css">
+
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
         <link rel="stylesheet" href="../tomorrow-night.css">
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -83,7 +89,7 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
+                                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
                         <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -110,6 +116,7 @@
                         <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
+
                     </div>
                 </div>
 
@@ -123,6 +130,7 @@
                         </ul>
                     </div>
                 </div>
+
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -137,7 +145,18 @@
                         <h1 id="rustを学ぼう"><a class="header" href="#rustを学ぼう">Rustを学ぼう</a></h1>
 <p>この資料は、 <a href="https://doc.rust-lang.org/book/">The Rust Programming Language</a> (TRPL) を参考に、Rustはいいぞ！ということを伝えるために作った資料です。TRPLの1~3章に相当するので、本資料を読んだ後にTRPLの該当部分を読んでみるとスラスラ読めると思います。</p>
 <h2 id="目次"><a class="header" href="#目次">目次</a></h2>
-<!-- toc -->
+<ul>
+<li><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB">はじめに</a></li>
+<li><a href="#%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%81%8B%E3%82%89rust%E3%82%92%E6%B0%97%E8%BB%BD%E3%81%AB%E8%A9%A6%E3%81%99">ブラウザからRustを気軽に試す</a></li>
+<li><a href="#%E3%81%93%E3%81%AE%E5%BE%8C%E3%81%AE%E9%80%B2%E3%82%81%E6%96%B9">この後の進め方</a></li>
+<li><a href="#%E5%A4%89%E6%95%B0">変数</a></li>
+<li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B">データ型</a></li>
+<li><a href="#%E9%96%A2%E6%95%B0">関数</a></li>
+<li><a href="#%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88">コメント</a></li>
+<li><a href="#%E3%83%95%E3%83%AD%E3%83%BC%E5%88%B6%E5%BE%A1">フロー制御</a></li>
+<li><a href="#%E6%89%80%E6%9C%89%E6%A8%A9">所有権</a></li>
+<li><a href="#%E7%B5%82%E3%82%8F%E3%82%8A%E3%81%AB">終わりに</a></li>
+</ul>
 <h2 id="はじめに"><a class="header" href="#はじめに">はじめに</a></h2>
 <p>初めてのプログラミング言語を学ぶときには、「その言語の良さが分からないと学ぶモチベーションが上がらない」でも、「言語の良さをきちんと知るにはその言語を少しは触る必要がある」というジレンマがあります。</p>
 <p>そこで今回は、<code>if</code>や<code>for</code>などの基本的な部分+所有権というRustの特徴的な部分をざっと紹介した後で、Rustのよさである「安全性」「実行速度」「開発体験」をそれぞれ手を動かしながら体験してもらうという構成にしました。</p>
@@ -355,9 +374,11 @@ for i in 0..10 {
                             <a rel="prev" href="../lowlayer-zeus/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
+
                             <a rel="next" href="../learn-rust/chapter-0.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
+
                         <div style="clear: both"></div>
                     </nav>
                 </div>
@@ -367,6 +388,7 @@ for i in 0..10 {
                     <a rel="prev" href="../lowlayer-zeus/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
+
                     <a rel="next" href="../learn-rust/chapter-0.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
@@ -374,16 +396,24 @@ for i in 0..10 {
 
         </div>
 
+
+
+
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>
+
+
         <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
         <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
+
+
     </body>
 </html>
