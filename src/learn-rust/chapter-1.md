@@ -1,6 +1,6 @@
 # Rustを学ぼう
 
-この文書は、 [The Rust Programming Language](https://doc.rust-lang.org/book/) を参考に、Rustはいいぞ！ということを伝えるために作った資料です。
+この資料は、 [The Rust Programming Language](https://doc.rust-lang.org/book/) (TRPL) を参考に、Rustはいいぞ！ということを伝えるために作った資料です。TRPLの1~3章に相当するので、本資料を読んだ後にTRPLの該当部分を読んでみるとスラスラ読めると思います。
 
 ## 目次
 
@@ -37,8 +37,6 @@ fn main() {
 また、「`SHARE`」から「`Permalink to the playground`」をクリックすると、 [https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=7c4f223819334660c7915edb9830a15e](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=7c4f223819334660c7915edb9830a15e) のように書いたコードへのリンクが得られます。
 
 使い方はこれで以上です。それでは、どの言語にも共通する`if`や`for`のような基本的な事柄をPlayground上で学んでみましょう。
-
-<!-- TODO: もう少し例を追加する、実行について述べる、所有権の例を出してコンパイルエラーに慣れさせる -->
 
 **確認テスト**
 
@@ -160,8 +158,87 @@ This is comment
 
 ## フロー制御
 
+ここでは、 `if` 式とループを学びます。
 
+`if` 式は、論理値を用いて条件分岐するときに使います。
+
+```rs
+let x = 5;
+
+// 論理値を入れる
+if x != 0 {
+    println!("x is not 0.");
+}
+
+// elseを使って2つに分岐
+if x != 0 {
+    println!("x is not 0.");
+} else {
+    println!("x is 0.");
+}
+
+// else if を使って複数に分岐
+if x > 0 {
+    println!("x is +.");
+} else if x < 0 {
+    println!("x is -.");
+} else {
+    println!("x is 0.");
+}
+
+// ifは式なので、値を返却できる
+let y = if x > 0 {
+    10 // 値を返却するために `;` がつかないことに注意
+} else {
+    -10 // let variable = if cond { A } else { B }; の時、AとBは同じ型
+};
+```
+
+ループは、`loop`, `while`, `for` の3つが使えます。
+
+```rs
+// loop: プログラムをCtrl+cで止めるまで永遠にループする
+loop {
+    println!("Hello!");
+}
+
+// while: 条件式が`true`の間だけループする
+let mut x = 5;
+while x > 0 {
+    println!("{}", x);
+    x = x - 1;
+}
+
+// for: 決められた固定回数だけループする。添字を使うループとして、配列を対象によく使われる
+for i in 0..10 {
+    println!("{}", i);
+}
+```
+
+`if` も `for` も、条件式やループの添字部分を `()` で囲うことがないのが特徴的ですね。
+
+**演習**
+
+- [問題へのリンク](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=3ccb9bc8405d3d98ee1725f56589bea7) を開いて、コンパイルが通るように「ここを書き換えよ」というコメントのある行を書き換えよ。
+  - なぜコンパイルが通らないのでしょうか？
+  - 参考: [TRPL: フロー制御](https://doc.rust-jp.rs/book-ja/ch03-05-control-flow.html)
+  - [解答へのリンクはこちら](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=5fa34d7023b8607beac73d32430d16a3)
+- [リンク](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=5c1f1ecf8fbbc73ea9d62adc8635c52b) を見て、for文の使い方を学びましょう。
+  - 参考: [Rust By Example: forループ](https://doc.rust-jp.rs/rust-by-example-ja/flow_control/for.html)
+  - 参考: [keyword `for`](https://doc.rust-lang.org/std/keyword.for.html)
+  - 参考: [`rev()`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.rev)
+  - 参考: [`iter()`](https://doc.rust-lang.org/std/primitive.slice.html#method.iter)
+  - Rustにはたくさんの便利なメソッドがあるので、やりたいことがあれば標準ライブラリのドキュメントを検索してみると良いでしょう。
 
 ## 所有権
 
+Rustには所有権という概念があります。これは The Rust Programming Language を読んでもらった方が遥かに分かりやすいと思うので、以下を読みましょう。
 
+- [4.所有権を理解する](https://doc.rust-jp.rs/book-ja/ch04-00-understanding-ownership.html)
+- [4.1.所有権とは？](https://doc.rust-jp.rs/book-ja/ch04-01-what-is-ownership.html)
+- [4.2.参照と借用](https://doc.rust-jp.rs/book-ja/ch04-02-references-and-borrowing.html)
+- [4.3.スライス型](https://doc.rust-jp.rs/book-ja/ch04-03-slices.html)
+
+## 終わりに
+
+TRPLは素晴らしい資料なので、本資料も工夫したかったのですが難しかったです。この資料を読んで、TRPL読んでみようかな、と思ってもらえたら嬉しいです。
