@@ -1,0 +1,213 @@
+<!DOCTYPE html><html><head><link rel="icon shortcut" href="/favicon.png"/><meta http-equiv="Content-Type" content="text/html" charSet="UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Rustを学ぼう</title><meta name="next-head-count" content="5"/><link rel="preload" href="/_next/static/css/f65c36dfe6831194.css" as="style"/><link rel="stylesheet" href="/_next/static/css/f65c36dfe6831194.css" data-n-g=""/><link rel="preload" href="/_next/static/css/f494479e1a89519f.css" as="style"/><link rel="stylesheet" href="/_next/static/css/f494479e1a89519f.css" data-n-p=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script src="/_next/static/chunks/webpack-243158fe274fe2cd.js" defer=""></script><script src="/_next/static/chunks/framework-91d7f78b5b4003c8.js" defer=""></script><script src="/_next/static/chunks/main-f32d95d8c858a7b4.js" defer=""></script><script src="/_next/static/chunks/pages/_app-9bbeff8c38d04d52.js" defer=""></script><script src="/_next/static/chunks/226-ba96346710649ee0.js" defer=""></script><script src="/_next/static/chunks/pages/%5Bbook%5D-04878e2209c1f101.js" defer=""></script><script src="/_next/static/dotw4FZmArqmITaoqeBQm/_buildManifest.js" defer=""></script><script src="/_next/static/dotw4FZmArqmITaoqeBQm/_ssgManifest.js" defer=""></script><script src="/_next/static/dotw4FZmArqmITaoqeBQm/_middlewareManifest.js" defer=""></script></head><body><div id="__next" data-reactroot=""><div class=""><main class=""><div class="flex"><div style="width:300px;display:block" class="h-screen fixed bg-gray-100"><nav class="maido-list pt-5 pl-3"><ul>
+<li><a href="/learn-rust/">Rustを学ぼう</a></li>
+</ul>
+</nav><div id="list-resize-handler" style="cursor:move;left:295px;width:5px;transform:translate(0px,0px)" class="top-0 bottom-0 h-screen fixed react-draggable"></div></div><div style="padding-left:300px;padding-right:300px" class="w-full h-screen"><div class="w-full relative flex space-x-4 justify-center pb-5"><div class="pl-2 pt-7 left-0"><button class="font-medium"><img src="/left-arrow.svg" alt="toggle" width="30" height="30"/></button></div><div class="w-full text-center pt-5"><h1 class="text-3xl underline"><a href="/">pub.docs</a></h1></div><div class="pr-2 pt-7 right-0"><button class="text-xl"><img src="/right-arrow.svg" alt="toggle" width="30" height="30"/></button></div></div><div class="maido-content px-5 pb-20"><h1 id="rust%E3%82%92%E5%AD%A6%E3%81%BC%E3%81%86" tabindex="-1"><a class="header-anchor" href="#rust%E3%82%92%E5%AD%A6%E3%81%BC%E3%81%86">#</a> Rustを学ぼう</h1>
+<p>この資料は、 <a href="https://doc.rust-lang.org/book/">The Rust Programming Language</a> (TRPL) を参考に、Rustはいいぞ！ということを伝えるために作った資料です。TRPLの1~3章に相当するので、本資料を読んだ後にTRPLの該当部分を読んでみるとスラスラ読めると思います。</p>
+<h2 id="%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB" tabindex="-1"><a class="header-anchor" href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB">#</a> はじめに</h2>
+<p>初めてのプログラミング言語を学ぶときには、「その言語の良さが分からないと学ぶモチベーションが上がらない」でも、「言語の良さをきちんと知るにはその言語を少しは触る必要がある」というジレンマがあります。</p>
+<p>そこで今回は、<code>if</code>や<code>for</code>などの基本的な部分+所有権というRustの特徴的な部分をざっと紹介した後で、Rustのよさである「安全性」「実行速度」「開発体験」をそれぞれ手を動かしながら体験してもらうという構成にしました。</p>
+<p>つまり、先に簡単にRustの勉強をした後で、Rustの良さを知る、という流れです。</p>
+<p>それでは始めていきましょう。</p>
+<h2 id="%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%81%8B%E3%82%89rust%E3%82%92%E6%B0%97%E8%BB%BD%E3%81%AB%E8%A9%A6%E3%81%99" tabindex="-1"><a class="header-anchor" href="#%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%81%8B%E3%82%89rust%E3%82%92%E6%B0%97%E8%BB%BD%E3%81%AB%E8%A9%A6%E3%81%99">#</a> ブラウザからRustを気軽に試す</h2>
+<p>Rustをインストールするのはとても簡単ですが、まずは気軽に試すためにブラウザだけで簡単なコードが試せる <a href="https://play.rust-lang.org/">Rust Playground</a> を使ってみましょう。このPlaygroundはブラウザで入力したコードを裏でサーバに投げてコンパイルして実行して結果を返してくれるものです。</p>
+<p>初めて使う方は以下のようなコードが表示されていると思います。この部分は自由に編集することができます。</p>
+<pre><code class="language-rust">fn main() {
+    println!("Hello, world!");
+}
+</code></pre>
+<p>これがRustのハローワールドです。main関数内に、標準出力を行うマクロ <code>println!</code> がありますね。マクロとは、他のコードを記述するためのコードを書く手段です。どのように他のコードを記述しているのかは <a href="https://doc.rust-lang.org/std/macro.println.html"><code>println!</code> のドキュメント</a> から、<code>Macro std::println</code> の右側にある <a href="https://doc.rust-lang.org/src/std/macros.rs.html#94-99"><code>src</code></a> 部分を見てみると良いでしょう。</p>
+<p>しかし現段階での理解は難しいと思うので、今は、関数は <code>!</code> なしで <code>func_name()</code> のように呼び出され、マクロは <code>!</code> ありで <code>macro_name!()</code> のように呼び出されるということを覚えていれば大丈夫です。</p>
+<p>それではこのコードを実行してみましょう。左上の「<code>RUN</code>」ボタンを押してみてください。画面下半分のところに「<code>Progress</code>」で黒丸が表示され、少し時間が経つと「<code>Standard Error</code>」, 「<code>Standard Output</code>」部分に表示がされていると思います。「<code>Standard Error</code>」が標準エラー出力、「<code>Standard Output</code>」が標準出力です。</p>
+<p>また、「<code>SHARE</code>」から「<code>Permalink to the playground</code>」をクリックすると、 <a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=7c4f223819334660c7915edb9830a15e">https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2021&amp;gist=7c4f223819334660c7915edb9830a15e</a> のように書いたコードへのリンクが得られます。</p>
+<p>使い方はこれで以上です。それでは、どの言語にも共通する<code>if</code>や<code>for</code>のような基本的な事柄をPlayground上で学んでみましょう。</p>
+<p><strong>確認テスト</strong></p>
+<ul>
+<li>[ ] Rust Playgroundの使い方(コードの書き方、実行の仕方、リンクの保存の仕方)を理解した</li>
+<li>[ ] 関数とマクロの違いをなんとなく理解した</li>
+</ul>
+<h2 id="%E3%81%93%E3%81%AE%E5%BE%8C%E3%81%AE%E9%80%B2%E3%82%81%E6%96%B9" tabindex="-1"><a class="header-anchor" href="#%E3%81%93%E3%81%AE%E5%BE%8C%E3%81%AE%E9%80%B2%E3%82%81%E6%96%B9">#</a> この後の進め方</h2>
+<p>この後はRustの基本的な部分と、所有権というRustの特徴的な部分を学びます。</p>
+<p>基本的にはRust Playgroundのリンクを開き、実行し、説明文を読み、演習に答える、という流れです。演習では参考リンクを貼っているので、それを見てチャレンジすると良いと思います。</p>
+<p>それではやっていきましょう！</p>
+<h2 id="%E5%A4%89%E6%95%B0" tabindex="-1"><a class="header-anchor" href="#%E5%A4%89%E6%95%B0">#</a> 変数</h2>
+<p><a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=473312ffaf20421980b8dd174b4a59ef">こちらのPlaygroundへのリンク</a> を開いて実行してください。</p>
+<p>以下のようなエラーが出たと思います。</p>
+<pre><code class="language-none">   Compiling playground v0.0.1 (/playground)
+error[E0384]: cannot assign twice to immutable variable `x`
+ --&gt; src/main.rs:4:5
+  |
+2 |     let x = 10;
+  |         -
+  |         |
+  |         first assignment to `x`
+  |         help: consider making this binding mutable: `mut x`
+3 |     println!("x = {}", x);
+4 |     x = 1000;
+  |     ^^^^^^^^ cannot assign twice to immutable variable
+
+For more information about this error, try `rustc --explain E0384`.
+error: could not compile `playground` due to previous error
+</code></pre>
+<p>Rustは実行バイナリにコンパイルして実行する言語です。このエラーは、コンパイルできないよ！というエラーです。</p>
+<p>エラー文を読んでみると、「cannot assign twice to immutable variable」(immutableな変数に2回代入はできない)とありますね。immutableは「不変」という意味です。Rustでは、変数はデフォルトで不変になっていて、再代入ができなくなっています。</p>
+<p>代入したい場合は、エラーメッセージの「help: consider making this binding mutable: <code>mut x</code>」にあるように、<code>mut</code>キーワードを使います。</p>
+<p><strong>演習</strong></p>
+<ul>
+<li><a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=35bb2c56c87d81d52d4a071d49add48a">問題へのリンク</a> を開いて、コンパイルが通るように「ここを書き換えよ」というコメントのある行を書き換えよ。
+<ul>
+<li>参考: <a href="https://doc.rust-jp.rs/book-ja/ch03-01-variables-and-mutability.html">TRPL: 変数と可変性</a></li>
+<li><a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=a6ff551ed8151ceb8a36784cc2dc39b9">解答へのリンクはこちら</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B" tabindex="-1"><a class="header-anchor" href="#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B">#</a> データ型</h2>
+<p>静的型付き言語であるRustでは、値には型がついています。データ型の中にある「スカラー型」と「複合型」を学びましょう。</p>
+<ul>
+<li>スカラー型: 整数、浮動小数点数、論理値、文字</li>
+<li>複合型: タプル型、配列</li>
+</ul>
+<p>となっています。</p>
+<p><strong>演習</strong></p>
+<ul>
+<li><a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=5eff8a75ba17095a08c0dcbb9920b3eb">リンク</a> を開いて、それぞれのデータ型を確認しましょう。
+<ul>
+<li>参考: <a href="https://doc.rust-jp.rs/book-ja/ch03-02-data-types.html">TRPL: データ型</a></li>
+<li>参考: <a href="https://doc.rust-lang.org/reference/types.html">The Rust Reference: Types</a></li>
+</ul>
+</li>
+<li><a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=5abae3a2b959cfbcb2b604b061dc6e50">問題へのリンク</a> を開いて、コンパイルが通るかどうか予想してみましょう。
+<ul>
+<li>なぜ <code>mut</code> をつけていないのにコンパイルが通るのでしょうか？</li>
+<li>参考: <a href="https://doc.rust-jp.rs/rust-by-example-ja/variable_bindings/scope.html">スコープとシャドーイング</a></li>
+<li><a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=4d3643102387a5360ebe8c0a9a47cffd">解答へのリンクはこちら</a></li>
+</ul>
+</li>
+<li><a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=4ae72baee96801dcbbc44c195719d504">問題へのリンク</a> を開いて、コンパイルが通るように「ここを書き換えよ」というコメントのある行を書き換えよ。
+<ul>
+<li>なぜコンパイルが通らないのでしょうか？理由を考えてみましょう。</li>
+<li>参考: <a href="https://doc.rust-jp.rs/rust-by-example-ja/types/cast.html">Rust By Example: 型キャスティング</a></li>
+<li>参考: <a href="https://doc.rust-lang.org/std/keyword.as.html">keyword <code>as</code></a></li>
+<li><a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=2512e68e8c35da8d12c952006741c41a">解答へのリンクはこちら</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="%E9%96%A2%E6%95%B0" tabindex="-1"><a class="header-anchor" href="#%E9%96%A2%E6%95%B0">#</a> 関数</h2>
+<p>関数は以下のように書きます。関数は値を受け取って処理を行うものなので、引数と返り値に注目すると分かりやすいと思います。</p>
+<pre><code class="language-rust">// 関数
+fn function_1() {
+    println!("Number = {}", 123);
+}
+
+// 引数のある関数
+fn function_2(x: i32) {
+    println!("Number = {}", x);
+}
+
+// 返り値のある関数
+fn function_3(x: i32) -&gt; i32 {
+    x + 1
+}
+</code></pre>
+<p>引数はカッコの中に、 <code>func_name(x: Ty)</code> のように変数 <code>x</code> の型 <code>Ty</code> をコロン <code>:</code> を間に挟んで書きます。</p>
+<p>返り値は、<code>func_name() -&gt; Ty</code> のように返り値の型 <code>Ty</code> を <code>-&gt;</code> の後ろに書きます。</p>
+<p><strong>演習</strong></p>
+<ul>
+<li><a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=0d0e85e7fcad3de7baebceb9bf4dcd89">問題へのリンク</a> を開いて、コンパイルが通るように関数を書き加えてみましょう。
+<ul>
+<li>上の <code>function_3</code> を真似してみましょう。</li>
+<li>参考: <a href="https://doc.rust-jp.rs/book-ja/ch03-03-how-functions-work.html">TRPL: 関数</a></li>
+<li><a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=0b0119736025db8697b879ef775f64ed">解答へのリンクはこちら</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88" tabindex="-1"><a class="header-anchor" href="#%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88">#</a> コメント</h2>
+<p>コメントは <code>// (comment)</code> や <code>/* (comment) */</code> と書くことができます。</p>
+<pre><code class="language-rust">// hello, world 一行のコメント
+
+/* ok
+This is comment
+複数行書けるコメント
+ */
+</code></pre>
+<h2 id="%E3%83%95%E3%83%AD%E3%83%BC%E5%88%B6%E5%BE%A1" tabindex="-1"><a class="header-anchor" href="#%E3%83%95%E3%83%AD%E3%83%BC%E5%88%B6%E5%BE%A1">#</a> フロー制御</h2>
+<p>ここでは、 <code>if</code> 式とループを学びます。</p>
+<p><code>if</code> 式は、論理値を用いて条件分岐するときに使います。</p>
+<pre><code class="language-rust">let x = 5;
+
+// 論理値を入れる
+if x != 0 {
+    println!("x is not 0.");
+}
+
+// elseを使って2つに分岐
+if x != 0 {
+    println!("x is not 0.");
+} else {
+    println!("x is 0.");
+}
+
+// else if を使って複数に分岐
+if x &gt; 0 {
+    println!("x is +.");
+} else if x &lt; 0 {
+    println!("x is -.");
+} else {
+    println!("x is 0.");
+}
+
+// ifは式なので、値を返却できる
+let y = if x &gt; 0 {
+    10 // 値を返却するために `;` がつかないことに注意
+} else {
+    -10 // let variable = if cond { A } else { B }; の時、AとBは同じ型
+};
+</code></pre>
+<p>ループは、<code>loop</code>, <code>while</code>, <code>for</code> の3つが使えます。</p>
+<pre><code class="language-rust">// loop: プログラムをCtrl+cで止めるまで永遠にループする
+loop {
+    println!("Hello!");
+}
+
+// while: 条件式が`true`の間だけループする
+let mut x = 5;
+while x &gt; 0 {
+    println!("{}", x);
+    x = x - 1;
+}
+
+// for: 決められた固定回数だけループする。添字を使うループとして、配列を対象によく使われる
+for i in 0..10 {
+    println!("{}", i);
+}
+</code></pre>
+<p><code>if</code> も <code>for</code> も、条件式やループの添字部分を <code>()</code> で囲うことがないのが特徴的ですね。</p>
+<p><strong>演習</strong></p>
+<ul>
+<li><a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=3ccb9bc8405d3d98ee1725f56589bea7">問題へのリンク</a> を開いて、コンパイルが通るように「ここを書き換えよ」というコメントのある行を書き換えよ。
+<ul>
+<li>なぜコンパイルが通らないのでしょうか？</li>
+<li>参考: <a href="https://doc.rust-jp.rs/book-ja/ch03-05-control-flow.html">TRPL: フロー制御</a></li>
+<li><a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=5fa34d7023b8607beac73d32430d16a3">解答へのリンクはこちら</a></li>
+</ul>
+</li>
+<li><a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=5c1f1ecf8fbbc73ea9d62adc8635c52b">リンク</a> を見て、for文の使い方を学びましょう。
+<ul>
+<li>参考: <a href="https://doc.rust-jp.rs/rust-by-example-ja/flow_control/for.html">Rust By Example: forループ</a></li>
+<li>参考: <a href="https://doc.rust-lang.org/std/keyword.for.html">keyword <code>for</code></a></li>
+<li>参考: <a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.rev"><code>rev()</code></a></li>
+<li>参考: <a href="https://doc.rust-lang.org/std/primitive.slice.html#method.iter"><code>iter()</code></a></li>
+<li>Rustにはたくさんの便利なメソッドがあるので、やりたいことがあれば標準ライブラリのドキュメントを検索してみると良いでしょう。</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E6%89%80%E6%9C%89%E6%A8%A9" tabindex="-1"><a class="header-anchor" href="#%E6%89%80%E6%9C%89%E6%A8%A9">#</a> 所有権</h2>
+<p>Rustには所有権という概念があります。これは The Rust Programming Language を読んでもらった方が遥かに分かりやすいと思うので、以下を読みましょう。</p>
+<ul>
+<li><a href="https://doc.rust-jp.rs/book-ja/ch04-00-understanding-ownership.html">4.所有権を理解する</a></li>
+<li><a href="https://doc.rust-jp.rs/book-ja/ch04-01-what-is-ownership.html">4.1.所有権とは？</a></li>
+<li><a href="https://doc.rust-jp.rs/book-ja/ch04-02-references-and-borrowing.html">4.2.参照と借用</a></li>
+<li><a href="https://doc.rust-jp.rs/book-ja/ch04-03-slices.html">4.3.スライス型</a></li>
+</ul>
+<h2 id="%E7%B5%82%E3%82%8F%E3%82%8A%E3%81%AB" tabindex="-1"><a class="header-anchor" href="#%E7%B5%82%E3%82%8F%E3%82%8A%E3%81%AB">#</a> 終わりに</h2>
+<p>TRPLは素晴らしい資料なので、本資料も工夫したかったのですが難しかったです。この資料を読んで、TRPL読んでみようかな、と思ってもらえたら嬉しいです。</p>
+</div></div><div style="width:300px;display:block" class="h-screen fixed bg-gray-100 right-0"><nav class="maido-toc pt-5 pl-3"><nav class="table-of-contents"><ol><li><a href="#rust%E3%82%92%E5%AD%A6%E3%81%BC%E3%81%86"> Rustを学ぼう</a><ol><li><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"> はじめに</a></li><li><a href="#%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%81%8B%E3%82%89rust%E3%82%92%E6%B0%97%E8%BB%BD%E3%81%AB%E8%A9%A6%E3%81%99"> ブラウザからRustを気軽に試す</a></li><li><a href="#%E3%81%93%E3%81%AE%E5%BE%8C%E3%81%AE%E9%80%B2%E3%82%81%E6%96%B9"> この後の進め方</a></li><li><a href="#%E5%A4%89%E6%95%B0"> 変数</a></li><li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B"> データ型</a></li><li><a href="#%E9%96%A2%E6%95%B0"> 関数</a></li><li><a href="#%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88"> コメント</a></li><li><a href="#%E3%83%95%E3%83%AD%E3%83%BC%E5%88%B6%E5%BE%A1"> フロー制御</a></li><li><a href="#%E6%89%80%E6%9C%89%E6%A8%A9"> 所有権</a></li><li><a href="#%E7%B5%82%E3%82%8F%E3%82%8A%E3%81%AB"> 終わりに</a></li></ol></li></ol></nav></nav><div id="toc-resize-handler" style="cursor:move;right:295px;width:5px;transform:translate(0px,0px)" class="absolute top-0 bottom-0 h-screen fixed react-draggable"></div></div></div></main></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"projectTitle":"pub.docs","meta":{"title":"Rustを学ぼう","date":"2022-02-03T21:50:49+09:00","draft":false},"list":"\u003cul\u003e\n\u003cli\u003e\u003ca href=\"/learn-rust/\"\u003eRustを学ぼう\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n","content":"\u003ch1 id=\"rust%E3%82%92%E5%AD%A6%E3%81%BC%E3%81%86\" tabindex=\"-1\"\u003e\u003ca class=\"header-anchor\" href=\"#rust%E3%82%92%E5%AD%A6%E3%81%BC%E3%81%86\"\u003e#\u003c/a\u003e Rustを学ぼう\u003c/h1\u003e\n\u003cp\u003eこの資料は、 \u003ca href=\"https://doc.rust-lang.org/book/\"\u003eThe Rust Programming Language\u003c/a\u003e (TRPL) を参考に、Rustはいいぞ！ということを伝えるために作った資料です。TRPLの1~3章に相当するので、本資料を読んだ後にTRPLの該当部分を読んでみるとスラスラ読めると思います。\u003c/p\u003e\n\u003ch2 id=\"%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB\" tabindex=\"-1\"\u003e\u003ca class=\"header-anchor\" href=\"#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB\"\u003e#\u003c/a\u003e はじめに\u003c/h2\u003e\n\u003cp\u003e初めてのプログラミング言語を学ぶときには、「その言語の良さが分からないと学ぶモチベーションが上がらない」でも、「言語の良さをきちんと知るにはその言語を少しは触る必要がある」というジレンマがあります。\u003c/p\u003e\n\u003cp\u003eそこで今回は、\u003ccode\u003eif\u003c/code\u003eや\u003ccode\u003efor\u003c/code\u003eなどの基本的な部分+所有権というRustの特徴的な部分をざっと紹介した後で、Rustのよさである「安全性」「実行速度」「開発体験」をそれぞれ手を動かしながら体験してもらうという構成にしました。\u003c/p\u003e\n\u003cp\u003eつまり、先に簡単にRustの勉強をした後で、Rustの良さを知る、という流れです。\u003c/p\u003e\n\u003cp\u003eそれでは始めていきましょう。\u003c/p\u003e\n\u003ch2 id=\"%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%81%8B%E3%82%89rust%E3%82%92%E6%B0%97%E8%BB%BD%E3%81%AB%E8%A9%A6%E3%81%99\" tabindex=\"-1\"\u003e\u003ca class=\"header-anchor\" href=\"#%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%81%8B%E3%82%89rust%E3%82%92%E6%B0%97%E8%BB%BD%E3%81%AB%E8%A9%A6%E3%81%99\"\u003e#\u003c/a\u003e ブラウザからRustを気軽に試す\u003c/h2\u003e\n\u003cp\u003eRustをインストールするのはとても簡単ですが、まずは気軽に試すためにブラウザだけで簡単なコードが試せる \u003ca href=\"https://play.rust-lang.org/\"\u003eRust Playground\u003c/a\u003e を使ってみましょう。このPlaygroundはブラウザで入力したコードを裏でサーバに投げてコンパイルして実行して結果を返してくれるものです。\u003c/p\u003e\n\u003cp\u003e初めて使う方は以下のようなコードが表示されていると思います。この部分は自由に編集することができます。\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-rust\"\u003efn main() {\n    println!(\"Hello, world!\");\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eこれがRustのハローワールドです。main関数内に、標準出力を行うマクロ \u003ccode\u003eprintln!\u003c/code\u003e がありますね。マクロとは、他のコードを記述するためのコードを書く手段です。どのように他のコードを記述しているのかは \u003ca href=\"https://doc.rust-lang.org/std/macro.println.html\"\u003e\u003ccode\u003eprintln!\u003c/code\u003e のドキュメント\u003c/a\u003e から、\u003ccode\u003eMacro std::println\u003c/code\u003e の右側にある \u003ca href=\"https://doc.rust-lang.org/src/std/macros.rs.html#94-99\"\u003e\u003ccode\u003esrc\u003c/code\u003e\u003c/a\u003e 部分を見てみると良いでしょう。\u003c/p\u003e\n\u003cp\u003eしかし現段階での理解は難しいと思うので、今は、関数は \u003ccode\u003e!\u003c/code\u003e なしで \u003ccode\u003efunc_name()\u003c/code\u003e のように呼び出され、マクロは \u003ccode\u003e!\u003c/code\u003e ありで \u003ccode\u003emacro_name!()\u003c/code\u003e のように呼び出されるということを覚えていれば大丈夫です。\u003c/p\u003e\n\u003cp\u003eそれではこのコードを実行してみましょう。左上の「\u003ccode\u003eRUN\u003c/code\u003e」ボタンを押してみてください。画面下半分のところに「\u003ccode\u003eProgress\u003c/code\u003e」で黒丸が表示され、少し時間が経つと「\u003ccode\u003eStandard Error\u003c/code\u003e」, 「\u003ccode\u003eStandard Output\u003c/code\u003e」部分に表示がされていると思います。「\u003ccode\u003eStandard Error\u003c/code\u003e」が標準エラー出力、「\u003ccode\u003eStandard Output\u003c/code\u003e」が標準出力です。\u003c/p\u003e\n\u003cp\u003eまた、「\u003ccode\u003eSHARE\u003c/code\u003e」から「\u003ccode\u003ePermalink to the playground\u003c/code\u003e」をクリックすると、 \u003ca href=\"https://play.rust-lang.org/?version=stable\u0026mode=debug\u0026edition=2021\u0026gist=7c4f223819334660c7915edb9830a15e\"\u003ehttps://play.rust-lang.org/?version=stable\u0026amp;mode=debug\u0026amp;edition=2021\u0026amp;gist=7c4f223819334660c7915edb9830a15e\u003c/a\u003e のように書いたコードへのリンクが得られます。\u003c/p\u003e\n\u003cp\u003e使い方はこれで以上です。それでは、どの言語にも共通する\u003ccode\u003eif\u003c/code\u003eや\u003ccode\u003efor\u003c/code\u003eのような基本的な事柄をPlayground上で学んでみましょう。\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e確認テスト\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e[ ] Rust Playgroundの使い方(コードの書き方、実行の仕方、リンクの保存の仕方)を理解した\u003c/li\u003e\n\u003cli\u003e[ ] 関数とマクロの違いをなんとなく理解した\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"%E3%81%93%E3%81%AE%E5%BE%8C%E3%81%AE%E9%80%B2%E3%82%81%E6%96%B9\" tabindex=\"-1\"\u003e\u003ca class=\"header-anchor\" href=\"#%E3%81%93%E3%81%AE%E5%BE%8C%E3%81%AE%E9%80%B2%E3%82%81%E6%96%B9\"\u003e#\u003c/a\u003e この後の進め方\u003c/h2\u003e\n\u003cp\u003eこの後はRustの基本的な部分と、所有権というRustの特徴的な部分を学びます。\u003c/p\u003e\n\u003cp\u003e基本的にはRust Playgroundのリンクを開き、実行し、説明文を読み、演習に答える、という流れです。演習では参考リンクを貼っているので、それを見てチャレンジすると良いと思います。\u003c/p\u003e\n\u003cp\u003eそれではやっていきましょう！\u003c/p\u003e\n\u003ch2 id=\"%E5%A4%89%E6%95%B0\" tabindex=\"-1\"\u003e\u003ca class=\"header-anchor\" href=\"#%E5%A4%89%E6%95%B0\"\u003e#\u003c/a\u003e 変数\u003c/h2\u003e\n\u003cp\u003e\u003ca href=\"https://play.rust-lang.org/?version=stable\u0026mode=debug\u0026edition=2021\u0026gist=473312ffaf20421980b8dd174b4a59ef\"\u003eこちらのPlaygroundへのリンク\u003c/a\u003e を開いて実行してください。\u003c/p\u003e\n\u003cp\u003e以下のようなエラーが出たと思います。\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-none\"\u003e   Compiling playground v0.0.1 (/playground)\nerror[E0384]: cannot assign twice to immutable variable `x`\n --\u0026gt; src/main.rs:4:5\n  |\n2 |     let x = 10;\n  |         -\n  |         |\n  |         first assignment to `x`\n  |         help: consider making this binding mutable: `mut x`\n3 |     println!(\"x = {}\", x);\n4 |     x = 1000;\n  |     ^^^^^^^^ cannot assign twice to immutable variable\n\nFor more information about this error, try `rustc --explain E0384`.\nerror: could not compile `playground` due to previous error\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eRustは実行バイナリにコンパイルして実行する言語です。このエラーは、コンパイルできないよ！というエラーです。\u003c/p\u003e\n\u003cp\u003eエラー文を読んでみると、「cannot assign twice to immutable variable」(immutableな変数に2回代入はできない)とありますね。immutableは「不変」という意味です。Rustでは、変数はデフォルトで不変になっていて、再代入ができなくなっています。\u003c/p\u003e\n\u003cp\u003e代入したい場合は、エラーメッセージの「help: consider making this binding mutable: \u003ccode\u003emut x\u003c/code\u003e」にあるように、\u003ccode\u003emut\u003c/code\u003eキーワードを使います。\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e演習\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\"https://play.rust-lang.org/?version=stable\u0026mode=debug\u0026edition=2021\u0026gist=35bb2c56c87d81d52d4a071d49add48a\"\u003e問題へのリンク\u003c/a\u003e を開いて、コンパイルが通るように「ここを書き換えよ」というコメントのある行を書き換えよ。\n\u003cul\u003e\n\u003cli\u003e参考: \u003ca href=\"https://doc.rust-jp.rs/book-ja/ch03-01-variables-and-mutability.html\"\u003eTRPL: 変数と可変性\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://play.rust-lang.org/?version=stable\u0026mode=debug\u0026edition=2021\u0026gist=a6ff551ed8151ceb8a36784cc2dc39b9\"\u003e解答へのリンクはこちら\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B\" tabindex=\"-1\"\u003e\u003ca class=\"header-anchor\" href=\"#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B\"\u003e#\u003c/a\u003e データ型\u003c/h2\u003e\n\u003cp\u003e静的型付き言語であるRustでは、値には型がついています。データ型の中にある「スカラー型」と「複合型」を学びましょう。\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eスカラー型: 整数、浮動小数点数、論理値、文字\u003c/li\u003e\n\u003cli\u003e複合型: タプル型、配列\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eとなっています。\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e演習\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\"https://play.rust-lang.org/?version=stable\u0026mode=debug\u0026edition=2021\u0026gist=5eff8a75ba17095a08c0dcbb9920b3eb\"\u003eリンク\u003c/a\u003e を開いて、それぞれのデータ型を確認しましょう。\n\u003cul\u003e\n\u003cli\u003e参考: \u003ca href=\"https://doc.rust-jp.rs/book-ja/ch03-02-data-types.html\"\u003eTRPL: データ型\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e参考: \u003ca href=\"https://doc.rust-lang.org/reference/types.html\"\u003eThe Rust Reference: Types\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://play.rust-lang.org/?version=stable\u0026mode=debug\u0026edition=2021\u0026gist=5abae3a2b959cfbcb2b604b061dc6e50\"\u003e問題へのリンク\u003c/a\u003e を開いて、コンパイルが通るかどうか予想してみましょう。\n\u003cul\u003e\n\u003cli\u003eなぜ \u003ccode\u003emut\u003c/code\u003e をつけていないのにコンパイルが通るのでしょうか？\u003c/li\u003e\n\u003cli\u003e参考: \u003ca href=\"https://doc.rust-jp.rs/rust-by-example-ja/variable_bindings/scope.html\"\u003eスコープとシャドーイング\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://play.rust-lang.org/?version=stable\u0026mode=debug\u0026edition=2021\u0026gist=4d3643102387a5360ebe8c0a9a47cffd\"\u003e解答へのリンクはこちら\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://play.rust-lang.org/?version=stable\u0026mode=debug\u0026edition=2021\u0026gist=4ae72baee96801dcbbc44c195719d504\"\u003e問題へのリンク\u003c/a\u003e を開いて、コンパイルが通るように「ここを書き換えよ」というコメントのある行を書き換えよ。\n\u003cul\u003e\n\u003cli\u003eなぜコンパイルが通らないのでしょうか？理由を考えてみましょう。\u003c/li\u003e\n\u003cli\u003e参考: \u003ca href=\"https://doc.rust-jp.rs/rust-by-example-ja/types/cast.html\"\u003eRust By Example: 型キャスティング\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e参考: \u003ca href=\"https://doc.rust-lang.org/std/keyword.as.html\"\u003ekeyword \u003ccode\u003eas\u003c/code\u003e\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://play.rust-lang.org/?version=stable\u0026mode=debug\u0026edition=2021\u0026gist=2512e68e8c35da8d12c952006741c41a\"\u003e解答へのリンクはこちら\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"%E9%96%A2%E6%95%B0\" tabindex=\"-1\"\u003e\u003ca class=\"header-anchor\" href=\"#%E9%96%A2%E6%95%B0\"\u003e#\u003c/a\u003e 関数\u003c/h2\u003e\n\u003cp\u003e関数は以下のように書きます。関数は値を受け取って処理を行うものなので、引数と返り値に注目すると分かりやすいと思います。\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-rust\"\u003e// 関数\nfn function_1() {\n    println!(\"Number = {}\", 123);\n}\n\n// 引数のある関数\nfn function_2(x: i32) {\n    println!(\"Number = {}\", x);\n}\n\n// 返り値のある関数\nfn function_3(x: i32) -\u0026gt; i32 {\n    x + 1\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e引数はカッコの中に、 \u003ccode\u003efunc_name(x: Ty)\u003c/code\u003e のように変数 \u003ccode\u003ex\u003c/code\u003e の型 \u003ccode\u003eTy\u003c/code\u003e をコロン \u003ccode\u003e:\u003c/code\u003e を間に挟んで書きます。\u003c/p\u003e\n\u003cp\u003e返り値は、\u003ccode\u003efunc_name() -\u0026gt; Ty\u003c/code\u003e のように返り値の型 \u003ccode\u003eTy\u003c/code\u003e を \u003ccode\u003e-\u0026gt;\u003c/code\u003e の後ろに書きます。\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e演習\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\"https://play.rust-lang.org/?version=stable\u0026mode=debug\u0026edition=2021\u0026gist=0d0e85e7fcad3de7baebceb9bf4dcd89\"\u003e問題へのリンク\u003c/a\u003e を開いて、コンパイルが通るように関数を書き加えてみましょう。\n\u003cul\u003e\n\u003cli\u003e上の \u003ccode\u003efunction_3\u003c/code\u003e を真似してみましょう。\u003c/li\u003e\n\u003cli\u003e参考: \u003ca href=\"https://doc.rust-jp.rs/book-ja/ch03-03-how-functions-work.html\"\u003eTRPL: 関数\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://play.rust-lang.org/?version=stable\u0026mode=debug\u0026edition=2021\u0026gist=0b0119736025db8697b879ef775f64ed\"\u003e解答へのリンクはこちら\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88\" tabindex=\"-1\"\u003e\u003ca class=\"header-anchor\" href=\"#%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88\"\u003e#\u003c/a\u003e コメント\u003c/h2\u003e\n\u003cp\u003eコメントは \u003ccode\u003e// (comment)\u003c/code\u003e や \u003ccode\u003e/* (comment) */\u003c/code\u003e と書くことができます。\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-rust\"\u003e// hello, world 一行のコメント\n\n/* ok\nThis is comment\n複数行書けるコメント\n */\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch2 id=\"%E3%83%95%E3%83%AD%E3%83%BC%E5%88%B6%E5%BE%A1\" tabindex=\"-1\"\u003e\u003ca class=\"header-anchor\" href=\"#%E3%83%95%E3%83%AD%E3%83%BC%E5%88%B6%E5%BE%A1\"\u003e#\u003c/a\u003e フロー制御\u003c/h2\u003e\n\u003cp\u003eここでは、 \u003ccode\u003eif\u003c/code\u003e 式とループを学びます。\u003c/p\u003e\n\u003cp\u003e\u003ccode\u003eif\u003c/code\u003e 式は、論理値を用いて条件分岐するときに使います。\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-rust\"\u003elet x = 5;\n\n// 論理値を入れる\nif x != 0 {\n    println!(\"x is not 0.\");\n}\n\n// elseを使って2つに分岐\nif x != 0 {\n    println!(\"x is not 0.\");\n} else {\n    println!(\"x is 0.\");\n}\n\n// else if を使って複数に分岐\nif x \u0026gt; 0 {\n    println!(\"x is +.\");\n} else if x \u0026lt; 0 {\n    println!(\"x is -.\");\n} else {\n    println!(\"x is 0.\");\n}\n\n// ifは式なので、値を返却できる\nlet y = if x \u0026gt; 0 {\n    10 // 値を返却するために `;` がつかないことに注意\n} else {\n    -10 // let variable = if cond { A } else { B }; の時、AとBは同じ型\n};\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eループは、\u003ccode\u003eloop\u003c/code\u003e, \u003ccode\u003ewhile\u003c/code\u003e, \u003ccode\u003efor\u003c/code\u003e の3つが使えます。\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-rust\"\u003e// loop: プログラムをCtrl+cで止めるまで永遠にループする\nloop {\n    println!(\"Hello!\");\n}\n\n// while: 条件式が`true`の間だけループする\nlet mut x = 5;\nwhile x \u0026gt; 0 {\n    println!(\"{}\", x);\n    x = x - 1;\n}\n\n// for: 決められた固定回数だけループする。添字を使うループとして、配列を対象によく使われる\nfor i in 0..10 {\n    println!(\"{}\", i);\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003ccode\u003eif\u003c/code\u003e も \u003ccode\u003efor\u003c/code\u003e も、条件式やループの添字部分を \u003ccode\u003e()\u003c/code\u003e で囲うことがないのが特徴的ですね。\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e演習\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\"https://play.rust-lang.org/?version=stable\u0026mode=debug\u0026edition=2021\u0026gist=3ccb9bc8405d3d98ee1725f56589bea7\"\u003e問題へのリンク\u003c/a\u003e を開いて、コンパイルが通るように「ここを書き換えよ」というコメントのある行を書き換えよ。\n\u003cul\u003e\n\u003cli\u003eなぜコンパイルが通らないのでしょうか？\u003c/li\u003e\n\u003cli\u003e参考: \u003ca href=\"https://doc.rust-jp.rs/book-ja/ch03-05-control-flow.html\"\u003eTRPL: フロー制御\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://play.rust-lang.org/?version=stable\u0026mode=debug\u0026edition=2021\u0026gist=5fa34d7023b8607beac73d32430d16a3\"\u003e解答へのリンクはこちら\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://play.rust-lang.org/?version=stable\u0026mode=debug\u0026edition=2021\u0026gist=5c1f1ecf8fbbc73ea9d62adc8635c52b\"\u003eリンク\u003c/a\u003e を見て、for文の使い方を学びましょう。\n\u003cul\u003e\n\u003cli\u003e参考: \u003ca href=\"https://doc.rust-jp.rs/rust-by-example-ja/flow_control/for.html\"\u003eRust By Example: forループ\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e参考: \u003ca href=\"https://doc.rust-lang.org/std/keyword.for.html\"\u003ekeyword \u003ccode\u003efor\u003c/code\u003e\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e参考: \u003ca href=\"https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.rev\"\u003e\u003ccode\u003erev()\u003c/code\u003e\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e参考: \u003ca href=\"https://doc.rust-lang.org/std/primitive.slice.html#method.iter\"\u003e\u003ccode\u003eiter()\u003c/code\u003e\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003eRustにはたくさんの便利なメソッドがあるので、やりたいことがあれば標準ライブラリのドキュメントを検索してみると良いでしょう。\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"%E6%89%80%E6%9C%89%E6%A8%A9\" tabindex=\"-1\"\u003e\u003ca class=\"header-anchor\" href=\"#%E6%89%80%E6%9C%89%E6%A8%A9\"\u003e#\u003c/a\u003e 所有権\u003c/h2\u003e\n\u003cp\u003eRustには所有権という概念があります。これは The Rust Programming Language を読んでもらった方が遥かに分かりやすいと思うので、以下を読みましょう。\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\"https://doc.rust-jp.rs/book-ja/ch04-00-understanding-ownership.html\"\u003e4.所有権を理解する\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://doc.rust-jp.rs/book-ja/ch04-01-what-is-ownership.html\"\u003e4.1.所有権とは？\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://doc.rust-jp.rs/book-ja/ch04-02-references-and-borrowing.html\"\u003e4.2.参照と借用\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://doc.rust-jp.rs/book-ja/ch04-03-slices.html\"\u003e4.3.スライス型\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"%E7%B5%82%E3%82%8F%E3%82%8A%E3%81%AB\" tabindex=\"-1\"\u003e\u003ca class=\"header-anchor\" href=\"#%E7%B5%82%E3%82%8F%E3%82%8A%E3%81%AB\"\u003e#\u003c/a\u003e 終わりに\u003c/h2\u003e\n\u003cp\u003eTRPLは素晴らしい資料なので、本資料も工夫したかったのですが難しかったです。この資料を読んで、TRPL読んでみようかな、と思ってもらえたら嬉しいです。\u003c/p\u003e\n","toc":"\u003cnav class=\"table-of-contents\"\u003e\u003col\u003e\u003cli\u003e\u003ca href=\"#rust%E3%82%92%E5%AD%A6%E3%81%BC%E3%81%86\"\u003e Rustを学ぼう\u003c/a\u003e\u003col\u003e\u003cli\u003e\u003ca href=\"#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB\"\u003e はじめに\u003c/a\u003e\u003c/li\u003e\u003cli\u003e\u003ca href=\"#%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%81%8B%E3%82%89rust%E3%82%92%E6%B0%97%E8%BB%BD%E3%81%AB%E8%A9%A6%E3%81%99\"\u003e ブラウザからRustを気軽に試す\u003c/a\u003e\u003c/li\u003e\u003cli\u003e\u003ca href=\"#%E3%81%93%E3%81%AE%E5%BE%8C%E3%81%AE%E9%80%B2%E3%82%81%E6%96%B9\"\u003e この後の進め方\u003c/a\u003e\u003c/li\u003e\u003cli\u003e\u003ca href=\"#%E5%A4%89%E6%95%B0\"\u003e 変数\u003c/a\u003e\u003c/li\u003e\u003cli\u003e\u003ca href=\"#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B\"\u003e データ型\u003c/a\u003e\u003c/li\u003e\u003cli\u003e\u003ca href=\"#%E9%96%A2%E6%95%B0\"\u003e 関数\u003c/a\u003e\u003c/li\u003e\u003cli\u003e\u003ca href=\"#%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88\"\u003e コメント\u003c/a\u003e\u003c/li\u003e\u003cli\u003e\u003ca href=\"#%E3%83%95%E3%83%AD%E3%83%BC%E5%88%B6%E5%BE%A1\"\u003e フロー制御\u003c/a\u003e\u003c/li\u003e\u003cli\u003e\u003ca href=\"#%E6%89%80%E6%9C%89%E6%A8%A9\"\u003e 所有権\u003c/a\u003e\u003c/li\u003e\u003cli\u003e\u003ca href=\"#%E7%B5%82%E3%82%8F%E3%82%8A%E3%81%AB\"\u003e 終わりに\u003c/a\u003e\u003c/li\u003e\u003c/ol\u003e\u003c/li\u003e\u003c/ol\u003e\u003c/nav\u003e"},"__N_SSG":true},"page":"/[book]","query":{"book":"learn-rust"},"buildId":"dotw4FZmArqmITaoqeBQm","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>
