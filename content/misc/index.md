@@ -25,7 +25,7 @@ publish/subscribe を表す。ソフトウェアデザインパターンのひ�
 
 有名なデザインパターンに Observer パターンというものがある。これとの違いは、Broker に相当する存在があるかないかである。Observer パターンでは送信者と受信者が直接やり取りするが、Pub/Sub では間に Broker が入る。
 
-![pub/sub vs observer](img/pubsub-1.png)
+![pub/sub vs observer](./pubsub-1.png)
 
 MQTT について
 MQTT は、Message Queueing Telemetry Transport を表す。Pub/Sub 方式で実装された IoT 向けのプロトコル。IBM 社と Eurotech 社にのメンバーよって考案され、もとのプロジェクトである Paho は Eclipse Foundation に寄贈されたようである。([Eclipse Paho™ MQTT Python Client](https://github.com/eclipse/paho.mqtt.python)) MQTT の OSS としては[mosquitto](https://github.com/eclipse/mosquitto)が有名。また、MQTT は Facebook Messenger で使用されているらしい。
