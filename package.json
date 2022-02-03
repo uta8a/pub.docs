@@ -1,0 +1,13 @@
+{
+  "name": "pub.docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "initialize": "cd maido && yarn install",
+    "dev": "cd maido && DOCUMENT_ROOT=../content yarn dev",
+    "export": "cd maido && DOCUMENT_ROOT=../content yarn build && yarn export"
+  },
+  "license": "MIT",
+  "author": "uta8a"
+}
