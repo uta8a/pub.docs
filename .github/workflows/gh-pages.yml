@@ -12,12 +12,20 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
+
+      - name: Use uta8a.maido
+        run: git clone https://github.com/uta8a/maido.git
+      
+      - name: yarn install (maido deps)
+        run: yarn initialize
+      - name: Build site
+        run: yarn export
       
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./book
+          publish_dir: ./maido/out
           publish_branch: release
           cname: docs.uta8a.net
