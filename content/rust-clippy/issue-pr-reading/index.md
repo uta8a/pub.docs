@@ -1,3 +1,9 @@
++++
+title = "IssueとPRを読む"
+date = "2022-02-03T21:50:49+09:00"
+draft = false
++++
+
 # IssueとPRを読む
 
 ## Issue [#7826](https://github.com/rust-lang/rust-clippy/issues/7826)
@@ -32,7 +38,7 @@ fn main() {
 {"message":"1 warning emitted","code":null,"level":"warning","spans":[],"children":[],"rendered":"warning: 1 warning emitted\n\n"}
 ```
 
-![image-1](img/image-1.jpg)
+![image-1](./image-1.jpg)
 
 ## Issue [#7934](https://github.com/rust-lang/rust-clippy/issues/7934)
 
@@ -54,7 +60,7 @@ MCVE(Minimal Complete and Verifiable Example ようは条件を満たす最小�
 
 stableでは再現しなかった。nightlyを入れて `rustup run nightly cargo run` してもこのバージョンより新しいから(おそらく修正済みになっており)再現しなかった。
 
-![image-2](img/image-2.jpg)
+![image-2](./image-2.jpg)
 
 関連して PR [#7945](https://github.com/rust-lang/rust-clippy/pull/7945) を読む。
 

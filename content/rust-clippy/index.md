@@ -1,3 +1,9 @@
++++
+title = "rust-lang/rust-clippyをさわる"
+date = "2022-02-03T21:50:49+09:00"
+draft = false
++++
+
 # [rust-lang/rust-clippy](https://github.com/rust-lang/rust-clippy)
 
 ## Todo

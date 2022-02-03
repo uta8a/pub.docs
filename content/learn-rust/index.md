@@ -1,10 +1,12 @@
++++
+title = "Rustを学ぼう"
+date = "2022-02-03T21:50:49+09:00"
+draft = false
++++
+
 # Rustを学ぼう
 
 この資料は、 [The Rust Programming Language](https://doc.rust-lang.org/book/) (TRPL) を参考に、Rustはいいぞ！ということを伝えるために作った資料です。TRPLの1~3章に相当するので、本資料を読んだ後にTRPLの該当部分を読んでみるとスラスラ読めると思います。
-
-## 目次
-
-<!-- toc -->
 
 ## はじめに
 
@@ -22,7 +24,7 @@ Rustをインストールするのはとても簡単ですが、まずは気軽�
 
 初めて使う方は以下のようなコードが表示されていると思います。この部分は自由に編集することができます。
 
-```rs
+```rust
 fn main() {
     println!("Hello, world!");
 }
@@ -57,7 +59,7 @@ fn main() {
 
 以下のようなエラーが出たと思います。
 
-```
+```none
    Compiling playground v0.0.1 (/playground)
 error[E0384]: cannot assign twice to immutable variable `x`
  --> src/main.rs:4:5
@@ -115,7 +117,7 @@ Rustは実行バイナリにコンパイルして実行する言語です。こ�
 
 関数は以下のように書きます。関数は値を受け取って処理を行うものなので、引数と返り値に注目すると分かりやすいと思います。
 
-```rs
+```rust
 // 関数
 fn function_1() {
     println!("Number = {}", 123);
@@ -147,7 +149,7 @@ fn function_3(x: i32) -> i32 {
 
 コメントは `// (comment)` や `/* (comment) */` と書くことができます。
 
-```rs
+```rust
 // hello, world 一行のコメント
 
 /* ok
@@ -162,7 +164,7 @@ This is comment
 
 `if` 式は、論理値を用いて条件分岐するときに使います。
 
-```rs
+```rust
 let x = 5;
 
 // 論理値を入れる
@@ -196,7 +198,7 @@ let y = if x > 0 {
 
 ループは、`loop`, `while`, `for` の3つが使えます。
 
-```rs
+```rust
 // loop: プログラムをCtrl+cで止めるまで永遠にループする
 loop {
     println!("Hello!");

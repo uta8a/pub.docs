@@ -1,3 +1,9 @@
++++
+title = "Contributing to Clippy を読む"
+date = "2022-02-03T21:50:49+09:00"
+draft = false
++++
+
 # [Contributing to Clippy](https://github.com/rust-lang/rust-clippy/blob/master/CONTRIBUTING.md#writing-code) を読む
 
 **読んで分かったこと**
@@ -14,7 +20,7 @@ clippyを `git clone` してくる
 
 [Adding a new lint](https://github.com/rust-lang/rust-clippy/blob/master/doc/adding_lints.md) によるとまずテストを追加するとのことなので、追加して `TESTNAME=zzz_test_rule cargo uitest` を走らせる
 
-![image-3](img/image-3.jpg)
+![image-3](./image-3.jpg)
 
 上のように、linterそんなのないよというエラーで落ちる。正常に動いている。次に中身を追加と期待されるstderrを追加する。
 
