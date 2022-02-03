@@ -12,23 +12,7 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
-
-      - uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
       
-      # TODO: cache or make image of mdbook and mdbook-toc
-      - uses: actions-rs/cargo@v1
-        with:
-          command: install
-          args: mdbook
-      - uses: actions-rs/cargo@v1
-        with:
-          command: install
-          args: mdbook-toc
-
-      - run: mdbook build --dest-dir ./book
-
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}

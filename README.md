@@ -9,13 +9,3 @@
 引用部分についてはそれぞれの引用元の LICENSE に従ってください。
 
 ## usage
-準備
-
-```sh
-cargo install mdbook
-cargo install mdbook-toc
-```
-
-```sh
-mdbook serve
-```
