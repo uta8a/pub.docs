@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use uta8a.maido
+      - name: Use uta8a/maido
         run: git clone https://github.com/uta8a/maido.git
       
       - name: yarn install (maido deps)

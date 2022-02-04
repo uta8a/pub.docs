@@ -10,3 +10,13 @@ GitHub repo: [uta8a/pub.docs](https://github.com/uta8a/pub.docs)
 
 引用部分についてはそれぞれの引用元の LICENSE に従ってください。
 
+```shell
+git clone https://github.com/uta8a/maido.git
+yarn initialize
+
+# dev
+yarn dev
+
+# export(generate static site)
+yarn export
+```
