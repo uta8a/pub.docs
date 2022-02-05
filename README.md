@@ -1,5 +1,7 @@
 # pub.docs
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5288973b-bf83-443f-9cc1-a89941ace048/deploy-status)](https://app.netlify.com/sites/docs-uta8a/deploys)
+
 コンピュータ周りの知識置き場
 
 GitHub repo: [uta8a/pub.docs](https://github.com/uta8a/pub.docs)
@@ -16,6 +18,10 @@ yarn initialize
 
 # dev
 yarn dev
+# add article
+yarn article "title" learn-rust/chapter-1/index.md
+# sync
+yarn sync
 
 # export(generate static site)
 yarn export
