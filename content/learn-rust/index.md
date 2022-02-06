@@ -103,10 +103,10 @@ Rustは実行バイナリにコンパイルして実行する言語です。こ�
 - [リンク](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=5eff8a75ba17095a08c0dcbb9920b3eb) を開いて、それぞれのデータ型を確認しましょう。
   - 参考: [TRPL: データ型](https://doc.rust-jp.rs/book-ja/ch03-02-data-types.html)
   - 参考: [The Rust Reference: Types](https://doc.rust-lang.org/reference/types.html)
-- [問題へのリンク](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=5abae3a2b959cfbcb2b604b061dc6e50) を開いて、コンパイルが通るかどうか予想してみましょう。
+- [問題へのリンク](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=343546d1d71252ab2ee06a09fcbc2741) を開いて、コンパイルが通るかどうか予想してみましょう。
   - なぜ `mut` をつけていないのにコンパイルが通るのでしょうか？
   - 参考: [スコープとシャドーイング](https://doc.rust-jp.rs/rust-by-example-ja/variable_bindings/scope.html)
-  - [解答へのリンクはこちら](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=4d3643102387a5360ebe8c0a9a47cffd)
+  - [解答へのリンクはこちら](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=6d1cd12e4ef538dd1094e1daa6b3d49e)
 - [問題へのリンク](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=4ae72baee96801dcbbc44c195719d504) を開いて、コンパイルが通るように「ここを書き換えよ」というコメントのある行を書き換えよ。
   - なぜコンパイルが通らないのでしょうか？理由を考えてみましょう。
   - 参考: [Rust By Example: 型キャスティング](https://doc.rust-jp.rs/rust-by-example-ja/types/cast.html)
@@ -161,6 +161,28 @@ This is comment
 ## フロー制御
 
 ここでは、 `if` 式とループを学びます。
+
+### 前提知識: 式と文
+
+プログラムにおいて、式と文は区別されます。式は値を返すもの、文は値を返さないものです。
+
+Rustでは、以下のように多くのものが式です。
+
+```rust
+let x = 5; // 全体で見るとlet statement(文)
+	
+if true {2} else {5} // これは値を返す(式)
+10 // これは値を返す(式)
+{
+	5
+} // これは値を返す(式)
+
+{
+	println!("hello");
+} // 実はこれも値を返す。セミコロンで終わりリターンのないコードブロックは `()` を返す。
+```
+
+### if式とループ
 
 `if` 式は、論理値を用いて条件分岐するときに使います。
 
@@ -221,7 +243,7 @@ for i in 0..10 {
 
 **演習**
 
-- [問題へのリンク](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=3ccb9bc8405d3d98ee1725f56589bea7) を開いて、コンパイルが通るように「ここを書き換えよ」というコメントのある行を書き換えよ。
+- [問題へのリンク](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=9fdf6ee8033955d7479699a185334346) を開いて、コンパイルが通るように「ここを書き換えよ」というコメントのある行を書き換えよ。
   - なぜコンパイルが通らないのでしょうか？
   - 参考: [TRPL: フロー制御](https://doc.rust-jp.rs/book-ja/ch03-05-control-flow.html)
   - [解答へのリンクはこちら](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=5fa34d7023b8607beac73d32430d16a3)
