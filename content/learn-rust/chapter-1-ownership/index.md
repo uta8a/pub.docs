@@ -142,7 +142,159 @@ let t = s;
 
 **演習**
 
-- 次のコードをコンパイルが通るように書き換えよ [問題 1](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=9e12d6d9c647e25eda9118ac23726968)
+- 次のコードをコンパイルが通るように書き換えよ [問題](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=9e12d6d9c647e25eda9118ac23726968)
 	- [解答](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=871ceef539f6a65ee5b7189c351ef2f2)
 
+## 関数
+
+関数に値を渡すときも、値はムーブやコピーされます。
+
+**演習**
+
+- 次のコードの所有権の動きを説明してみよう [問題](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=3e6e6aac0105e12c8690fbe6e9121237)
+	- 変数 `A` が変数 `B` にムーブされる、というように説明すればOK
+	- [解答](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=2bdf860d3073f9f4068b3a9f9a8e7bf4)
+
 # 参照
+
+関数に値を渡して、その値をその後も使いたい場合はどうすれば良いでしょうか？以下のような場合を考えましょう。
+
+```rust
+let s = String::from("I don't know this string length");
+let length = get_length(s); // 長さが知りたいだけなのにムーブされてしまう
+
+// sが使えない！
+```
+
+このような場合、**参照**を使うと良いです。
+
+
+(補足: 単に長さを知るだけなら、`s.len()`が使えます。)
+
+参照は、 `&` を使って表します。以下のコードと、対応するメモリ上での様子を見ていきましょう。
+
+```rust
+let s = String::from("hello");
+let t = get_length(&s);
+
+// sが使える
+```
+
+![参照のimage](./image-2.png)
+
+参照を代入したり関数の引数に参照を取ったりしてもムーブは起きません。
+
+**演習**
+
+- 次のコードを参照を用いてコンパイルが通るように修正しましょう。 [問題](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=b85b9f66619e76f58bc0721119d05705)
+	- [参考 TRPL - 参照と借用](https://doc.rust-jp.rs/book-ja/ch04-02-references-and-borrowing.html)
+	- [解答](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=b6709f067b559d13ec6e6a45e4233989)
+
+## 可変な参照
+
+関数で参照を受け取り、その値に何か操作を行いたい場合に可変な参照が使われます。以下の状況を考えてみましょう。
+
+```rust
+// このコードは動かない
+fn main() {
+	let mut s = String::from("hello");
+	append_world(&s);
+	println!("{}", s);
+}
+
+fn append_world(s: &String) {
+	s.push_str(", world");
+}
+```
+
+[Rust Playgroundのリンク](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=a607d047b70a7b4e48108bf16544d0b7)
+
+上のコードはコンパイルが通りません。そこで、可変な参照を使ってみましょう。
+
+```rust
+fn main() {
+	let mut s = String::from("hello");
+	append_world(&mut s);
+	println!("{}", s);
+}
+
+fn append_world(s: &mut String) {
+	s.push_str(", world");
+}
+```
+
+[Rust Playgroundのリンク](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=64595e3af241d3cd69da742c3dbfbd61)
+
+`&mut s` のように `mut` キーワードをつけることで可変な参照を得ています。可変な参照は、参照先のヒープに格納されたデータにアクセスすることができます。
+
+ただし、可変な参照はデータ競合などを防ぐために以下の規則があります
+
+- 同時に可変な参照を2つ以上とることはできない(可変な参照は、存在するならば常に1つだけ取れる)
+
+不変な参照はいくつでも同時に取ることができます。可変な参照と不変な参照を同時に取ることはできません。まとめると、
+
+- 一つの可変参照を取っている
+- いくつかの不変参照を取っている
+
+のいずれか一方の状況しか起こらない、ということになります。
+
+**演習**
+
+- 以下のコードはコンパイルできるでしょうか？また、そうなった理由を考えてみましょう。 [問題 1](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=d7dc3cc64c1fbd8e550434d90fc25ea2)
+	- [解答](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=d1743bd216ce7f83e78a017eb29912f0)
+- 以下のコードはコンパイルできるでしょうか？また、そうなった理由を考えてみましょう。 [問題 2](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=c722c9f01a151416ff511b4179bc67e2)
+	- [解答](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=b4703bd5e089823f706019f2111989ce)
+- 以下のコードはコンパイルできるでしょうか？また、そうなった理由を考えてみましょう。 [問題 3](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=649673e01a3257f9869080f85593a557)
+	- [解答](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=3fb640e0b45c92d25114ba4443b618a4)
+
+## 参照とスコープ
+
+以下のような関数を考えてみましょう。
+
+```rust
+fn dangle() -> &String {
+	let s = String::from("hello");
+	
+	&s
+}
+```
+
+`dangle` 関数はString型の参照を返します。ところが、この参照が指し示す先の `s` はこの関数が終わるとスコープを抜けてしまいます。`dangle` 関数から返される値はどうなるのでしょうか？このようなことを防ぐために、Rustはライフタイムという仕組みを導入しています。
+
+参照が指す先の値は、常に有効である必要があります。
+
+**演習**
+
+- 以下のコードをコンパイルできるように修正せよ。[問題](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=04a930dd24cdbb1ce956d0550e6212f0)
+	- [参考: TRPL - 宙に浮いた参照](https://doc.rust-jp.rs/book-ja/ch04-02-references-and-borrowing.html#%E5%AE%99%E3%81%AB%E6%B5%AE%E3%81%84%E3%81%9F%E5%8F%82%E7%85%A7)
+	- [解答](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=a8ecc33c18e57b5383bac3e4137b8787)
+
+# スライス
+
+スライスは、コレクションの中の一連の要素を参照できる、所有権のないデータ型です。
+
+以下にコードと対応するメモリ上での様子を示します。
+
+```rust
+let s = String::from("hello world");
+
+let hello = &s[0..5];
+let world = &s[6..11];
+```
+
+![sliceのイメージ](./image-3.png)
+
+sliceはヒープ上の値の、開始位置へのポインタと長さを持っています。文字列スライスを表す型は `&str` と表記します。
+
+**演習**
+
+- 次のコードをコンパイルできるように指示に従って書き換えよ。 [問題 1](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=6cedf4f5b1cd5398154abb7505852291)
+	- [参考: TRPL - スライス型](https://doc.rust-jp.rs/book-ja/ch04-03-slices.html)
+	- [解答](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=674c0d0cf5ebb3f37919154a2b65a559)
+- 次のコードをコンパイルできるように書き換えよ。 [問題 2](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=423d3211da4ec813157864a8e140a2e1)
+	- [参考: TRPL - スライス型](https://doc.rust-jp.rs/book-ja/ch04-03-slices.html)
+	- [解答](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=6ff8a8aa0922c6da65fa62a51605cbb4)
+
+# まとめ
+
+これまででRustの特徴的なメモリの管理方法 - 所有権を説明してきました。説明できてないこともあるので、ぜひ [TRPL](https://doc.rust-jp.rs/book-ja/ch04-00-understanding-ownership.html) を読んでみてください。ほぼ内容は同じなので、きっとスラスラ読めると思います。
