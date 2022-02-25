@@ -9,7 +9,7 @@ draft = false
 4分くらいなので、 [KOBA789さんの解説動画](https://youtu.be/677kcyyPwJ4) を見ましょう。
 
 - Rust自体のインストール
-- VSCode
+- VS Code
 - rust-analyzer
 - clippy
 
@@ -22,7 +22,7 @@ draft = false
 ```none
 git clone https://github.com/starship/starship.git
 cd starship
-code . # VSCodeを開く
+code . # VS Codeを開く
 ```
 
 rust-analyzerが自動で動いて `target/` ディレクトリが作られていると思います。Rustのエントリーポイントは `src/main.rs` か `src/lib.rs` なので探してみると、 `src/main.rs` が見つかります。
@@ -41,5 +41,5 @@ rust-analyzerが自動で動いて `target/` ディレクトリが作られて�
 
 # まとめ
 
-Rustの良さの一つ、開発体験の良さを紹介しました。ぜひ環境構築して、VSCodeの機能やrust-analyzerやclippyなどの開発支援の仕組みを使いこなしていきましょう。
+Rustの良さの一つ、開発体験の良さを紹介しました。ぜひ環境構築して、VS Codeの機能やrust-analyzerやclippyなどの開発支援の仕組みを使いこなしていきましょう。
 
