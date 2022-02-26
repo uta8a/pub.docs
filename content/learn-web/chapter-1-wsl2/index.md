@@ -14,7 +14,7 @@ WSLの導入をします。これはWindowsの方が対象です。Mac/Linuxの�
 - つまり、開発環境としてWSL2を使います。
 - [https://docs.microsoft.com/ja-jp/windows/wsl/install](https://docs.microsoft.com/ja-jp/windows/wsl/install) を参考にWSLを導入してください。usernameはスペースを使わないで、短いものにすると良いと思います。例えば私のユーザ名は`uta8a`です。
 - なにか困ったことがあればdiscordで質問してください。
-- できたらVSCodeでフォルダを開いて、ターミナルを開いてください。そこにコマンドを打ちます。このときターミナルではUbuntuを選択してください。
+- できたらVS Codeでフォルダを開いて、ターミナルを開いてください。そこにコマンドを打ちます。このときターミナルではUbuntuを選択してください。
 
 ![image-3](./image-3.jpg)
 
