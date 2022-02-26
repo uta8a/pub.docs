@@ -2,8 +2,9 @@
 image_path = "./image.png"
 +++
 
-- denoとgoでWebに入門しよう
+- DenoとGoでWebに入門しよう
   - [はじめに](./index.md)
+  - [技術選定について](./chapter-0-why/index.md)
 - 環境構築
   - [GitHubへの登録](./chapter-1-github/index.md)
   - [VS Codeの導入](./chapter-1-vscode/index.md)

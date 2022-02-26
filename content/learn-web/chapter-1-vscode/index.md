@@ -21,5 +21,6 @@ draft = false
 
 これで完了です。
 
-## 確認テスト
-- [ ] エディタを導入して少し使ってみることができた。
+#### feedback
+
+フィードバックのリンクは [こちら](https://forms.gle/Yd7nN2FK5tTYP6Xp8)
