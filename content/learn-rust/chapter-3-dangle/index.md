@@ -1,14 +1,18 @@
 +++
-title = "低レイヤに入門して学ぶRustの安全性"
+title = "スタックの流れを追って学ぶ低レイヤの安全性"
 date = "2022-02-06T22:28:05+09:00"
 draft = false
 +++
 
-# 低レイヤに入門して学ぶRustの安全性
+# スタックの流れを追って学ぶ低レイヤの安全性
 
 この章では、ダングリングポインタがなぜ危険なのかを学び、Rustのライフタイムという安全のための機構が意味することについて考えます。
 
-Rustの安全性と銘打っていますが、Rustには触れず、主にCとアセンブリの話をします。
+> 追記
+> 今回は未定義動作を扱っているため、必ずしも説明の通りの動作をしないことが判明しました。
+> 以下の説明は扱う例が良くなかったので、ダングリングポインタで危険性を説明できる例を知っている方は[Issue](https://github.com/uta8a/pub.docs/issues)で教えていただけると幸いです。
+
+Rustには触れず、主にCとアセンブリの話をします。
 
 [TRPLのライフタイムで参照を検証する](https://doc.rust-jp.rs/book-ja/ch10-03-lifetime-syntax.html) の章で、以下のようなコードが記載されています。
 
@@ -190,6 +194,34 @@ CではRustのようにコンパイルで止められることはありません
 
 - `f()` と `corrupt()` と `main()` の3つの関数がしていることを説明してみましょう。分からないところがあれば質問してみましょう。
   - [解答例](https://gist.github.com/uta8a/f35a81648e520a8b5e3bfb2230a145df)
+
+## 補足: Rustではどう書くの？
+
+RustでCのコードを書き直すとしたら、ローカル変数の参照は返せないのでそのまま値を返すことになります。
+
+```rust
+use std::io;
+
+fn f() -> char {
+    let mut x = String::new();
+    io::stdin().read_line(&mut x).expect("read char");
+    let x = x.chars().next().unwrap();
+    let r = x;
+    r
+}
+
+fn corrupt() {
+    let d3 = vec!['z'; 100];
+}
+
+fn main() {
+    print!("Input char!:");
+    io::Write::flush(&mut io::stdout()).expect("flush failed!");
+    let r = f();
+    corrupt();
+    println!("Your char: {r}");
+}
+```
 
 # 無効な参照とスタックの様子
 

@@ -298,3 +298,5 @@ sliceはヒープ上の値の、開始位置へのポインタと長さを持っ
 # まとめ
 
 これまででRustの特徴的なメモリの管理方法 - 所有権を説明してきました。説明できてないこともあるので、ぜひ [TRPL](https://doc.rust-jp.rs/book-ja/ch04-00-understanding-ownership.html) を読んでみてください。ほぼ内容は同じなので、きっとスラスラ読めると思います。
+
+また、[rustlings](https://github.com/rust-lang/rustlings) という資料もおすすめです。rustlingsで演習を行い、分からないところを [TRPL](https://doc.rust-jp.rs/book-ja) で学べば、Rustに詳しくなっているはずです。
