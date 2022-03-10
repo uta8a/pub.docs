@@ -6,6 +6,8 @@ draft = false
 
 # 問題1 コンテナとMariaDB
 
+[問題リンク](https://github.com/uta8a/learn-infra.code/tree/main/container-mariadb)
+
 # 問題概要
 
 Dockerコンテナが落ちるので、それを直す問題。
@@ -122,7 +124,7 @@ VMはmultipassを使って立てています。disk容量を多めに取って�
 
 ## mariaVOLはどこにあるのか？
 
-パス指定しない、即ち dot `.`から始まらないパスはNamed Volumeとして扱われ、 `/var/lib/docker/volumes/<name>/` に実体が置かれる。
+パス指定しない、即ち dot `.` やslash `/` から始まらないパスはNamed Volumeとして扱われ、 `/var/lib/docker/volumes/<name>/` に実体が置かれる。
 
 ## Named Volume + `../../../` はどうなる？
 
@@ -138,7 +140,7 @@ See 'docker run --help'.
 
 未解決
 
-手元から以下のようにつなげるが、ansibleで同じことをしようとすると無理。
+手元から以下のようにつなげるが、ansibleで同じことをしようとすると無理。(`ERROR 2013 (HY000): Lost connection to MySQL server at 'handshake: reading initial communication packet', system error: 11` と言われる。TCPなどの他の接続方法を試したりmy.cnfを書き換えてもダメだった)
 
 ```
 $ mysql -h 127.0.0.1 -u root -pMariaPass
