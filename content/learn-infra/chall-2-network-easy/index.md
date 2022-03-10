@@ -6,6 +6,8 @@ draft = false
 
 # 問題2 docker network
 
+[問題リンク](https://github.com/uta8a/learn-infra.code/tree/main/network-easy-1)
+
 # 問題概要
 
 Dockerコンテナからpingができないので、それを直す問題。
